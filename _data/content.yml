@@ -110,6 +110,20 @@ ui:
   # Footer
   footer:
     copyright_text: "All rights reserved."
+    theme_name: "Spectrum"
+    theme_url: "https://github.com/dudududukim/spectrum"
+    show_theme_credit: true
+    show_social_links: true
+    social_links:
+      email:
+        label: "Email"
+        icon: "fa-solid fa-envelope"
+      github:
+        label: "GitHub"
+        icon: "fa-brands fa-github"
+      linkedin:
+        label: "LinkedIn" 
+        icon: "fa-brands fa-linkedin"
 
 # Error Pages
 error:

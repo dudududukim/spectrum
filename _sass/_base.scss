@@ -38,7 +38,7 @@ body {
   min-height: 100vh;
   max-width: 1125px; /* Expanded by 25% from 900px for better screen utilization */
   margin: 0 auto;
-  padding: 6rem 1rem 2rem; /* Add top padding for fixed navigation */
+  padding: 6rem 1rem 0; /* Add top padding for fixed navigation, remove bottom padding */
 }
 
 .main-content {
@@ -248,7 +248,7 @@ button {
 // Responsive breakpoints
 @media (max-width: 767px) {
   .page-wrapper {
-    padding: 5.5rem 0.75rem 1rem; /* Add top padding for fixed navigation on mobile */
+    padding: 5.5rem 0.75rem 0; /* Add top padding for fixed navigation on mobile, remove bottom padding */
   }
   
   body {
@@ -269,12 +269,12 @@ button {
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .page-wrapper {
-    padding: 5.75rem 1.5rem 1.5rem; /* Add top padding for fixed navigation on tablet */
+    padding: 5.75rem 1.5rem 0; /* Add top padding for fixed navigation on tablet, remove bottom padding */
   }
 }
 
 @media (min-width: 1024px) {
   .page-wrapper {
-    padding: 6rem 2rem 2rem; /* Add top padding for fixed navigation on desktop */
+    padding: 6rem 2rem 0; /* Add top padding for fixed navigation on desktop, remove bottom padding */
   }
 }

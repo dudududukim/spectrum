@@ -1,19 +1,43 @@
 <nav class="site-navigation" role="navigation" aria-label="Site navigation">
-  <div class="nav-path">
-    <a href="{{ '/' | relative_url }}" class="nav-home">{{ site.data.content.ui.navigation.home_text | default: "Home" }}</a>
-    {% unless page.url == "/" %}
-      <span class="nav-separator">/</span>
-      {% if page.layout == 'tech-bite-list' %}
-        <span class="nav-current">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</span>
-      {% elsif page.layout == 'tech-bite' %}
-        <a href="{{ '/tech-bites/' | relative_url }}" class="nav-link">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</a>
+  <div class="nav-container">
+    <div class="nav-path">
+      <a href="{{ '/' | relative_url }}" class="nav-home">{{ site.data.content.ui.navigation.home_text | default: "Home" }}</a>
+      {% unless page.url == "/" %}
         <span class="nav-separator">/</span>
-        <span class="nav-current">{{ page.title }}</span>
-      {% elsif page.layout == 'about' %}
-        <span class="nav-current">About</span>
-      {% else %}
-        <span class="nav-current">{{ page.title | default: 'Page' }}</span>
+        {% if page.layout == 'tech-bite-list' %}
+          <span class="nav-current">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</span>
+        {% elsif page.layout == 'tech-bite' %}
+          <a href="{{ '/tech-bites/' | relative_url }}" class="nav-link">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</a>
+          <span class="nav-separator">/</span>
+          <span class="nav-current">{{ page.title }}</span>
+        {% elsif page.layout == 'about' %}
+          <span class="nav-current">About</span>
+        {% else %}
+          <span class="nav-current">{{ page.title | default: 'Page' }}</span>
+        {% endif %}
+      {% endunless %}
+    </div>
+    
+    {% if site.data.content.ui.footer.show_social_links %}
+    <div class="nav-social">
+      {% if site.personal.social_links.email %}
+      <a href="mailto:{{ site.personal.social_links.email }}" target="_blank" rel="noopener noreferrer" class="nav-social-link" title="{{ site.data.content.ui.footer.social_links.email.label }}">
+        <i class="{{ site.data.content.ui.footer.social_links.email.icon }}"></i>
+      </a>
       {% endif %}
-    {% endunless %}
+      
+      {% if site.personal.social_links.github %}
+      <a href="https://github.com/{{ site.personal.social_links.github }}" target="_blank" rel="noopener noreferrer" class="nav-social-link" title="{{ site.data.content.ui.footer.social_links.github.label }}">
+        <i class="{{ site.data.content.ui.footer.social_links.github.icon }}"></i>
+      </a>
+      {% endif %}
+      
+      {% if site.personal.social_links.linkedin %}
+      <a href="https://linkedin.com/in/{{ site.personal.social_links.linkedin }}" target="_blank" rel="noopener noreferrer" class="nav-social-link" title="{{ site.data.content.ui.footer.social_links.linkedin.label }}">
+        <i class="{{ site.data.content.ui.footer.social_links.linkedin.icon }}"></i>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
   </div>
 </nav>
