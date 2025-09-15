@@ -1,0 +1,61 @@
+# Navigation Configuration
+# =======================
+
+primary:
+  - title: "Home"
+    url: "/"
+    icon: "fa-solid fa-home"
+  - title: "Tech Bites"
+    url: "/tech-bites/"
+    icon: "fa-solid fa-code"
+  - title: "Papers"
+    url: "/papers/"
+    icon: "fa-solid fa-file-text"
+    enabled: false  # Disabled until implemented
+  - title: "About"
+    url: "/about/"
+    icon: "fa-solid fa-user"
+  - title: "Gallery"
+    url: "/gallery/"
+    icon: "fa-solid fa-images"
+    enabled: false  # Disabled until implemented
+
+# Footer navigation
+footer:
+  - title: "Privacy Policy"
+    url: "/privacy/"
+    enabled: false
+  - title: "Terms of Service"
+    url: "/terms/"
+    enabled: false
+  - title: "Contact"
+    url: "/contact/"
+    enabled: false
+
+# Social navigation (moved from main config for better organization)
+social:
+  - platform: "email"
+    title: "Email"
+    url: "mailto:kdhluck@naver.com"
+    icon: "fa-solid fa-envelope"
+    enabled: true
+  - platform: "github"
+    title: "GitHub"
+    url: "https://github.com/dudududukim"
+    icon: "fa-brands fa-github"
+    enabled: true
+  - platform: "linkedin"
+    title: "LinkedIn"
+    url: "https://www.linkedin.com/in/duhyeon-kim-6623082b1/"
+    icon: "fa-brands fa-linkedin"
+    enabled: true
+  - platform: "twitter"
+    title: "Twitter"
+    url: "https://twitter.com/username"
+    icon: "fa-brands fa-twitter"
+    enabled: false
+  - platform: "instagram"
+    title: "Instagram"
+    url: "https://instagram.com/username"
+    icon: "fa-brands fa-instagram"
+    enabled: false

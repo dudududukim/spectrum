@@ -1,0 +1,87 @@
+# Theme Data Configuration
+# =======================
+
+# Color palette
+colors:
+  primary: "#3498db"
+  secondary: "#2c3e50"
+  accent: "#e74c3c"
+  background: "#ffffff"
+  text: "#2c3e50"
+  light_text: "#7f8c8d"
+  
+  # Semantic colors
+  success: "#27ae60"
+  warning: "#f39c12"
+  error: "#e74c3c"
+  info: "#3498db"
+
+# Typography settings
+typography:
+  font_family: "Lato"
+  font_weights:
+    light: 300
+    normal: 400
+    medium: 500
+    bold: 700
+  font_sizes:
+    xs: "0.75rem"
+    sm: "0.875rem"
+    base: "1rem"
+    lg: "1.125rem"
+    xl: "1.25rem"
+    "2xl": "1.5rem"
+    "3xl": "1.875rem"
+    "4xl": "2.25rem"
+
+# Layout settings
+layout:
+  max_width: "1125px"
+  content_width: "875px"
+  breakpoints:
+    mobile: "768px"
+    tablet: "1024px"
+    desktop: "1200px"
+
+# Animation settings
+animations:
+  enabled: true
+  duration: "0.3s"
+  easing: "ease"
+  reduced_motion: false
+
+# Dark mode settings
+dark_mode:
+  enabled: true
+  auto_detect: true
+  toggle_enabled: true
+
+# Component settings
+components:
+  cards:
+    border_radius: "0.75rem"
+    shadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+    hover_shadow: "0 8px 25px rgba(0, 0, 0, 0.15)"
+  
+  buttons:
+    border_radius: "0.5rem"
+    padding: "0.75rem 1.5rem"
+    transition: "all 0.3s ease"
+  
+  navigation:
+    height: "4rem"
+    background: "var(--bg-color)"
+    border_bottom: "1px solid var(--border-light)"
+  
+  footer:
+    padding: "0.75rem 0"
+    background: "var(--bg-color)"
+    border_top: "1px solid var(--border-light)"
+
+# Accessibility settings
+accessibility:
+  focus_ring: "2px solid var(--primary-color)"
+  focus_offset: "2px"
+  high_contrast: false
+  reduced_motion: false
+  skip_links: true

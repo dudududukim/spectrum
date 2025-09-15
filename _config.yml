@@ -78,6 +78,14 @@ theme:
   dark_mode:
     enabled: true
 
+# Accessibility Configuration
+accessibility:
+  skip_links: true
+  focus_indicators: true
+  screen_reader_text: "Skip to main content"
+  high_contrast_mode: false
+  reduced_motion: false
+
 # Navigation Configuration
 navigation:
   home_text: "Home"
@@ -167,6 +175,12 @@ collections:
   tech-bites:
     output: true
     permalink: /tech-bites/:name/
+  papers:
+    output: true
+    permalink: /papers/:name/
+  gallery:
+    output: true
+    permalink: /gallery/:name/
 
 # Default Front Matter
 defaults:

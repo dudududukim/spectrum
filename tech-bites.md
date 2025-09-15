@@ -1,7 +1,7 @@
 ---
 layout: tech-bite-list
-title: "{{ site.content.pages.tech_bites.title | default: 'Tech Bites' }}"
-description: "{{ site.content.pages.tech_bites.description | default: 'Daily tech insights and discoveries from the world of web development' }}"
+title: "Tech Bites"
+description: "Daily tech insights and discoveries from the world of web development"
 ---
 
 {{ site.content.pages.tech_bites.list_page.welcome_message | default: "Welcome to my collection of tech insights!" }} {{ site.content.pages.tech_bites.list_page.intro_text | default: "Here you'll find bite-sized posts covering everything from JavaScript tips to performance optimization techniques, accessibility best practices, and modern web development workflows." }}

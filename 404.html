@@ -1,20 +1,20 @@
 ---
 layout: default
-title: "{{ site.data.content.error['404'].title | default: 'Page Not Found' }}"
+title: "Page Not Found"
 permalink: /404.html
 ---
 
 <div class="error-page">
     <div class="error-content">
         <h1 class="error-code">404</h1>
-        <h2 class="error-title">{{ site.data.content.error['404'].title | default: "Page Not Found" }}</h2>
+        <h2 class="error-title">{{ site.content.ui.error['404'].title | default: "Page Not Found" }}</h2>
         <p class="error-description">
-            {{ site.data.content.error['404'].message | default: "Sorry, the page you're looking for doesn't exist or has been moved." }}
+            {{ site.content.ui.error['404'].message | default: "Sorry, the page you're looking for doesn't exist or has been moved." }}
         </p>
         
         <div class="error-actions">
             <a href="{{ '/' | relative_url }}" class="btn btn-primary">
-                {{ site.data.content.error['404'].back_home_text | default: "Go Home" }}
+                {{ site.content.ui.error['404'].back_home_text | default: "Go Home" }}
             </a>
             <a href="{{ '/tech-bites/' | relative_url }}" class="btn btn-outline">
                 Browse Tech Bites

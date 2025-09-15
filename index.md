@@ -1,7 +1,7 @@
 ---
 layout: about
-title: "{{ site.content.pages.about.title | default: 'About' }}"
-description: "{{ site.site.description | default: 'Personal website showcasing tech insights and development journey' }}"
+title: "About"
+description: "Personal website showcasing tech insights and development journey"
 ---
 
 {{ site.content.pages.about.welcome_message | default: "Welcome to my personal corner of the web!" }} {{ site.content.pages.about.intro_text | default: "I'm passionate about technology, design, and continuous learning." }}
