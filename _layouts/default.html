@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% if page.title %}
-            {{ page.title }} - {{ site.title }}
+            {{ page.title }} - {{ site.site.title }}
         {% else %}
-            {{ site.title }}
+            {{ site.site.title }}
         {% endif %}
     </title>
     
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="author" content="{{ site.author }}">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.site.description }}{% endif %}">
+    <meta name="author" content="{{ site.site.author }}">
     
     <!-- SEO Tags -->
     {% seo %}
@@ -21,7 +21,7 @@
     {% include structured-data.html %}
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="{{ site.data.theme.colors.primary | default: '#3498db' }}">
+    <meta name="theme-color" content="{{ site.theme.colors.primary | default: '#3498db' }}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
@@ -30,10 +30,10 @@
     <style>
         /* Immediate theme detection and critical styles */
         :root {
-            --primary-color: {{ site.data.theme.colors.primary | default: '#3498db' }};
-            --font-family: {{ site.data.theme.typography.font_family | default: 'Lato' }}, Verdana, Helvetica, sans-serif;
-            --max-width: {{ site.data.theme.layout.max_width | default: '1125px' }};
-            --animation-speed: {{ site.data.theme.animations.tech_bite_cards.duration | default: '0.3s' }};
+            --primary-color: {{ site.theme.colors.primary | default: '#3498db' }};
+            --font-family: {{ site.theme.typography.font_family | default: 'Lato' }}, Verdana, Helvetica, sans-serif;
+            --max-width: {{ site.theme.layout.max_width | default: '1125px' }};
+            --animation-speed: {{ site.theme.animations.duration | default: '0.3s' }};
         }
         
         /* Prevent transitions during initial load */
@@ -53,7 +53,7 @@
         }
         
         /* Dark mode detection */
-        {% if site.site_theme.dark_mode %}
+        {% if site.theme.dark_mode.enabled %}
         html, body {
             background-color: #2c3e50;
             color: #ecf0f1;
@@ -94,7 +94,7 @@
         <style>{{ page.custom_css }}</style>
     {% endif %}
 </head>
-<body class="{% if site.theme.dark_mode %}dark-mode{% endif %} {% if page.layout %}{{ page.layout }}{% endif %}">
+<body class="{% if site.theme.dark_mode.enabled %}dark-mode{% endif %} {% if page.layout %}{{ page.layout }}{% endif %}">
     <!-- Fixed Site Navigation -->
     {% include site-navigation.html %}
     
@@ -108,12 +108,12 @@
         <footer class="site-footer">
             <div class="footer-content">
                 <div class="footer-copyright">
-                    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.personal.name | default: site.author }}. {{ site.data.content.ui.footer.copyright_text | default: "All rights reserved." }}</p>
+                    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.personal.name | default: site.site.author }}. {{ site.footer.copyright_text | default: "All rights reserved." }}</p>
                 </div>
                 
-                {% if site.data.content.ui.footer.show_theme_credit %}
+                {% if site.footer.show_theme_credit %}
                 <div class="footer-theme">
-                    <p>Built with <a href="{{ site.data.content.ui.footer.theme_url | default: '#' }}" target="_blank" rel="noopener noreferrer">{{ site.data.content.ui.footer.theme_name | default: 'Spectrum' }}</a></p>
+                    <p>Built with <a href="{{ site.footer.theme_url | default: '#' }}" target="_blank" rel="noopener noreferrer">{{ site.footer.theme_name | default: 'Spectrum' }}</a></p>
                 </div>
                 {% endif %}
                 

@@ -1,34 +1,157 @@
-# Jekyll Configuration
+# ===========================================
+# SPECTRUM JEKYLL THEME - MAIN CONFIGURATION
+# ===========================================
+
+# Jekyll Core Settings
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 timezone: UTC
 
-# Site Information
-title: "Duhyeon Kim"
-description: "Personal website showcasing tech insights and development journey"
-url: "https://yoursite.com"
-baseurl: ""
-author: "Duhyeon Kim"
-email: "your@email.com"
+# Site Identity
+site:
+  title: "Duhyeon Kim"
+  description: "Personal website showcasing tech insights and development journey"
+  url: "https://yoursite.com"
+  baseurl: ""
+  author: "Duhyeon Kim"
+  email: "your@email.com"
 
-# Personal Customization
+# Personal Information
 personal:
   name: "Duhyeon Kim"
-  tagline: "Your tagline or subtitle"
+  tagline: "spectrum jekyll owner"
   bio: "Developer passionate about technology, design, and continuous learning"
   location: "Seoul, Korea"
-  social_links:
-    github: "dudududukim"
-    linkedin: "kimduhyeon"
-    twitter: "username"
-    email: "kimduhyeon@example.com"
-    instagram: "username"
 
-# Theme Settings (basic configuration only)
-site_theme:
-  dark_mode: true
-  enable_animations: true
+# Social Media Links
+social:
+  enabled: true
+  platforms:
+    email:
+      enabled: true
+      url: "kdhluck@naver.com"
+      label: "Email"
+      icon: "fa-solid fa-envelope"
+    github:
+      enabled: true
+      url: "https://github.com/dudududukim"
+      label: "GitHub"
+      icon: "fa-brands fa-github"
+    linkedin:
+      enabled: true
+      url: "https://www.linkedin.com/in/duhyeon-kim-6623082b1/"
+      label: "LinkedIn"
+      icon: "fa-brands fa-linkedin"
+    twitter:
+      enabled: false
+      url: "https://twitter.com/username"
+      label: "Twitter"
+      icon: "fa-brands fa-twitter"
+    instagram:
+      enabled: false
+      url: "https://instagram.com/username"
+      label: "Instagram"
+      icon: "fa-brands fa-instagram"
+
+# Theme Configuration
+theme:
+  colors:
+    primary: "#3498db"
+    secondary: "#2c3e50"
+    accent: "#e74c3c"
+    background: "#ffffff"
+    text: "#2c3e50"
+    light_text: "#7f8c8d"
+  
+  typography:
+    font_family: "Lato"
+  
+  layout:
+    max_width: "1125px"
+    content_width: "875px"
+  
+  animations:
+    enabled: true
+    duration: "0.3s"
+  
+  dark_mode:
+    enabled: true
+
+# Navigation Configuration
+navigation:
+  home_text: "Home"
+  show_social: true
+  social_position: "right"
+
+# Footer Configuration
+footer:
+  copyright_text: "All rights reserved."
+  show_theme_credit: true
+  theme_name: "Spectrum"
+  theme_url: "https://github.com/dudududukim/spectrum"
+
+# Content Configuration
+content:
+  pages:
+    about:
+      title: "About"
+      welcome_message: "Welcome to my personal corner of the web!"
+      intro_text: "I'm passionate about technology, design, and continuous learning."
+      main_description: "I believe in the power of sharing knowledge and documenting discoveries. This site serves as a platform where I document my daily tech insights, share learnings from my development journey, and explore the ever-evolving world of technology."
+      sections:
+        - title: "What You'll Find Here"
+          content: "**Tech Bites** - Daily insights and discoveries from the world of web development, programming, and technology. These bite-sized posts cover everything from JavaScript tips to performance optimization techniques, accessibility best practices, and modern development workflows."
+        - title: "Beyond the Code"
+          content: "When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or simply enjoying a good cup of coffee while reading about the latest developments in web standards and programming languages."
+      closing_text: "Feel free to explore the site, and don't hesitate to reach out if you'd like to connect or collaborate on something interesting!"
+    
+    tech_bites:
+      title: "Tech Bites"
+      description: "Daily tech insights and discoveries"
+      list_page:
+        welcome_message: "Welcome to my collection of tech insights!"
+        intro_text: "Here you'll find bite-sized posts covering everything from JavaScript tips to performance optimization techniques, accessibility best practices, and modern web development workflows."
+        description: "Each post is designed to be a quick read while providing practical, actionable information that you can apply to your own projects. Whether you're a seasoned developer or just starting out, there's something here for everyone."
+        categories_title: "Categories"
+        categories:
+          - name: "JavaScript"
+            description: "Modern ES6+ features, frameworks, and best practices"
+          - name: "CSS"
+            description: "Layout techniques, animations, and responsive design"
+          - name: "Performance"
+            description: "Optimization strategies and Core Web Vitals"
+          - name: "Accessibility"
+            description: "Building inclusive web experiences"
+          - name: "Development"
+            description: "Workflows, tools, and productivity tips"
+        closing_text: "Browse through the posts below, or use the category filter to find content that interests you most."
+      card:
+        read_more_text: "Read More"
+        min_read_text: "min read"
+      navigation:
+        previous_text: "← Previous"
+        next_text: "Next →"
+  
+  ui:
+    buttons:
+      view_all_tech_bites: "View All Tech Bites"
+      read_more: "Read More"
+    
+    pagination:
+      showing_text: "Showing"
+      of_text: "of"
+      tech_bites_text: "tech bites"
+      page_text: "Page"
+      previous_text: "Previous"
+      next_text: "Next"
+    
+    error:
+      404:
+        title: "Page Not Found"
+        message: "Sorry, the page you're looking for doesn't exist."
+        suggestion: "You might want to go back to the homepage or check out our tech bites."
+        back_home_text: "Back to Home"
 
 # Section Configuration
 sections:
@@ -38,14 +161,6 @@ sections:
     show_categories: true
     show_dates: true
     pagination: 10
-
-# Content Configuration
-content:
-  # Enable/disable content customization
-  enable_customization: true
-  
-  # Fallback behavior when content is missing
-  use_fallbacks: true
 
 # Collections
 collections:

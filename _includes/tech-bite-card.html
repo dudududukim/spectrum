@@ -40,12 +40,12 @@
         
         <footer class="card-footer">
             <a href="{{ tech_bite.url | relative_url }}" class="read-more">
-                {{ site.data.content.pages.tech_bites.card.read_more_text | default: "Read More" }}
+                {{ site.content.pages.tech_bites.card.read_more_text | default: "Read More" }}
                 <span class="read-more-icon">→</span>
             </a>
             
             {% if tech_bite.reading_time %}
-                <span class="reading-time">{{ tech_bite.reading_time }} {{ site.data.content.pages.tech_bites.card.min_read_text | default: "min read" }}</span>
+                <span class="reading-time">{{ tech_bite.reading_time }} {{ site.content.pages.tech_bites.card.min_read_text | default: "min read" }}</span>
             {% endif %}
         </footer>
     </div>

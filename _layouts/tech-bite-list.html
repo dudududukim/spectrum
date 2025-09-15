@@ -5,8 +5,8 @@ layout: default
 <div class="tech-bite-list-page">
     <div class="container">
         <header class="page-header">
-            <h1 class="page-title">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</h1>
-            <p class="page-description">{{ site.data.content.pages.tech_bites.description | default: "Daily tech insights and discoveries" }}</p>
+            <h1 class="page-title">{{ site.content.pages.tech_bites.title | default: "Tech Bites" }}</h1>
+            <p class="page-description">{{ site.content.pages.tech_bites.description | default: "Daily tech insights and discoveries" }}</p>
         </header>
         
         <!-- Tech Bites Grid -->
@@ -25,15 +25,15 @@ layout: default
             {% if total_pages > 1 %}
                 <nav class="pagination">
                     <div class="pagination-info">
-                        {{ site.data.content.pagination.showing_text | default: "Showing" }} {{ pagination_size }} {{ site.data.content.pagination.of_text | default: "of" }} {{ sorted_tech_bites.size }} {{ site.data.content.pagination.tech_bites_text | default: "tech bites" }}
+                        {{ site.content.ui.pagination.showing_text | default: "Showing" }} {{ pagination_size }} {{ site.content.ui.pagination.of_text | default: "of" }} {{ sorted_tech_bites.size }} {{ site.content.ui.pagination.tech_bites_text | default: "tech bites" }}
                     </div>
                     
                     <div class="pagination-links">
-                        <button class="pagination-btn" id="prev-page" disabled>{{ site.data.content.pagination.previous_text | default: "Previous" }}</button>
+                        <button class="pagination-btn" id="prev-page" disabled>{{ site.content.ui.pagination.previous_text | default: "Previous" }}</button>
                         <span class="pagination-current">
-                            {{ site.data.content.pagination.page_text | default: "Page" }} <span id="current-page">1</span> {{ site.data.content.pagination.of_text | default: "of" }} {{ total_pages }}
+                            {{ site.content.ui.pagination.page_text | default: "Page" }} <span id="current-page">1</span> {{ site.content.ui.pagination.of_text | default: "of" }} {{ total_pages }}
                         </span>
-                        <button class="pagination-btn" id="next-page">{{ site.data.content.pagination.next_text | default: "Next" }}</button>
+                        <button class="pagination-btn" id="next-page">{{ site.content.ui.pagination.next_text | default: "Next" }}</button>
                     </div>
                 </nav>
             {% endif %}
