@@ -1,0 +1,19 @@
+<nav class="site-navigation" role="navigation" aria-label="Site navigation">
+  <div class="nav-path">
+    <a href="{{ '/' | relative_url }}" class="nav-home">{{ site.data.content.ui.navigation.home_text | default: "Home" }}</a>
+    {% unless page.url == "/" %}
+      <span class="nav-separator">/</span>
+      {% if page.layout == 'tech-bite-list' %}
+        <span class="nav-current">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</span>
+      {% elsif page.layout == 'tech-bite' %}
+        <a href="{{ '/tech-bites/' | relative_url }}" class="nav-link">{{ site.data.content.pages.tech_bites.title | default: "Tech Bites" }}</a>
+        <span class="nav-separator">/</span>
+        <span class="nav-current">{{ page.title }}</span>
+      {% elsif page.layout == 'about' %}
+        <span class="nav-current">About</span>
+      {% else %}
+        <span class="nav-current">{{ page.title | default: 'Page' }}</span>
+      {% endif %}
+    {% endunless %}
+  </div>
+</nav>

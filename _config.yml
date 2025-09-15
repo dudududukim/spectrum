@@ -1,0 +1,107 @@
+# Jekyll Configuration
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+timezone: UTC
+
+# Site Information
+title: "Duhyeon Kim"
+description: "Personal website showcasing tech insights and development journey"
+url: "https://yoursite.com"
+baseurl: ""
+author: "Duhyeon Kim"
+email: "your@email.com"
+
+# Personal Customization
+personal:
+  name: "Duhyeon Kim"
+  tagline: "Your tagline or subtitle"
+  bio: "Developer passionate about technology, design, and continuous learning"
+  location: "Seoul, Korea"
+  social_links:
+    github: "username"
+    linkedin: "username"
+    twitter: "username"
+    email: "your@email.com"
+    instagram: "username"
+
+# Theme Settings (basic configuration only)
+site_theme:
+  dark_mode: true
+  enable_animations: true
+
+# Section Configuration
+sections:
+  tech_bite:
+    enabled: true
+    main_page_count: 5
+    show_categories: true
+    show_dates: true
+    pagination: 10
+
+# Content Configuration
+content:
+  # Enable/disable content customization
+  enable_customization: true
+  
+  # Fallback behavior when content is missing
+  use_fallbacks: true
+
+# Collections
+collections:
+  tech-bites:
+    output: true
+    permalink: /tech-bites/:name/
+
+# Default Front Matter
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "tech-bites"
+    values:
+      layout: "tech-bite"
+      show_sidebar: true
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Build Settings
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - .gitignore
+  - .sass-cache/
+  - .jekyll-cache/
+  - .jekyll-metadata
+
+# Sass Configuration
+sass:
+  style: compressed
+  sass_dir: _sass
+  load_paths:
+    - assets/css
+
+# Kramdown Configuration
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false

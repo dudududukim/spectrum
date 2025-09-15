@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if page.title %}
+            {{ page.title }} - {{ site.title }}
+        {% else %}
+            {{ site.title }}
+        {% endif %}
+    </title>
+    
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="author" content="{{ site.author }}">
+    
+    <!-- SEO Tags -->
+    {% seo %}
+    
+    <!-- Structured Data -->
+    {% include structured-data.html %}
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="{{ site.data.theme.colors.primary | default: '#3498db' }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+    
+    <!-- Critical CSS - Prevents FOUC -->
+    <style>
+        /* Immediate theme detection and critical styles */
+        :root {
+            --primary-color: {{ site.data.theme.colors.primary | default: '#3498db' }};
+            --font-family: {{ site.data.theme.typography.font_family | default: 'Lato' }}, Verdana, Helvetica, sans-serif;
+            --max-width: {{ site.data.theme.layout.max_width | default: '1125px' }};
+            --animation-speed: {{ site.data.theme.animations.tech_bite_cards.duration | default: '0.3s' }};
+        }
+        
+        /* Prevent transitions during initial load */
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+        
+        /* Immediate background color to prevent black flash */
+        html, body {
+            background-color: #ffffff;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            line-height: 1.6;
+        }
+        
+        /* Dark mode detection */
+        {% if site.site_theme.dark_mode %}
+        html, body {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        {% endif %}
+        
+        /* Hide content until CSS loads */
+        .page-wrapper {
+            opacity: 0;
+        }
+        
+        /* Show content after CSS loads */
+        .css-loaded .page-wrapper {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+        
+        /* Re-enable transitions after load */
+        .transitions-enabled * {
+            transition: unset !important;
+            animation: unset !important;
+        }
+    </style>
+    
+    <!-- Font Loading with preload and font-display swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"></noscript>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    
+    {% if page.custom_css %}
+        <style>{{ page.custom_css }}</style>
+    {% endif %}
+</head>
+<body class="{% if site.theme.dark_mode %}dark-mode{% endif %} {% if page.layout %}{{ page.layout }}{% endif %}">
+    <!-- Fixed Site Navigation -->
+    {% include site-navigation.html %}
+    
+    <div class="page-wrapper">
+        <!-- Main Content -->
+        <main class="main-content">
+            {{ content }}
+        </main>
+        
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; {{ 'now' | date: "%Y" }} {{ site.personal.name | default: site.author }}. {{ site.data.content.ui.footer.copyright_text | default: "All rights reserved." }}</p>
+            </div>
+        </footer>
+    </div>
+    
+    
+    <!-- Critical JavaScript - Theme Detection and Transition Management -->
+    <script>
+        // Immediate theme detection and transition management
+        (function() {
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('custom-theme');
+            const savedDarkMode = localStorage.getItem('dark-mode');
+            
+            // Apply saved theme immediately if available
+            if (savedTheme) {
+                try {
+                    const theme = JSON.parse(savedTheme);
+                    const root = document.documentElement;
+                    root.style.setProperty('--primary-color', theme.primary);
+                    root.style.setProperty('--secondary-color', theme.secondary);
+                    root.style.setProperty('--accent-color', theme.accent);
+                    root.style.setProperty('--bg-color', theme.background);
+                    root.style.setProperty('--text-color', theme.text);
+                    root.style.setProperty('--light-text-color', theme.lightText);
+                } catch (e) {
+                    console.warn('Invalid saved theme data');
+                }
+            }
+            
+            // Apply dark mode immediately if saved
+            if (savedDarkMode === 'true') {
+                document.body.classList.add('dark-mode');
+                document.documentElement.style.setProperty('--bg-color', '#2c3e50');
+                document.documentElement.style.setProperty('--text-color', '#ecf0f1');
+                document.documentElement.style.setProperty('--light-text-color', '#bdc3c7');
+            }
+            
+            // Mark CSS as loaded and enable transitions
+            function enableTransitions() {
+                document.documentElement.classList.add('css-loaded', 'transitions-enabled');
+            }
+            
+            // Enable transitions after a short delay to ensure smooth loading
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', enableTransitions);
+            } else {
+                enableTransitions();
+            }
+            
+            // Fallback: enable transitions after 100ms
+            setTimeout(enableTransitions, 100);
+        })();
+    </script>
+    
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/theme-manager.js' | relative_url }}"></script>
+    
+    {% if page.custom_js %}
+        <script>{{ page.custom_js }}</script>
+    {% endif %}
+    
+    <!-- Analytics (if configured) -->
+    {% if site.google_analytics %}
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ site.google_analytics }}');
+        </script>
+    {% endif %}
+</body>
+</html>

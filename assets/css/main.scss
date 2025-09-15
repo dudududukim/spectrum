@@ -1,0 +1,466 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@use "color-variables";
+@use "base";
+@use "components";
+
+// Page-specific styles
+// ===================
+
+// Unified Section Styles
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  
+  .section-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+}
+
+.section-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.section-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  
+  &:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+  .btn-icon {
+    font-size: 0.8rem;
+  }
+}
+
+// About page
+.about-page {
+  .page-header {
+    @extend .section-header;
+  }
+  
+  .page-title {
+    @extend .section-title;
+  }
+  
+  .page-subtitle {
+    @extend .section-description;
+  }
+  
+  .about-content {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .about-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 875px; /* Expanded by 25% from 700px to match wider layout */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .about-details {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .detail-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .detail-value {
+    font-weight: 400;
+    color: var(--text-color);
+    font-size: 0.9rem;
+  }
+}
+
+// Tech Bites page
+.tech-bite-list-page {
+  .page-header {
+    @extend .section-header;
+  }
+  
+  .page-title {
+    @extend .section-title;
+  }
+  
+  .page-description {
+    @extend .section-description;
+  }
+  
+  
+  .tech-bites-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+    max-width: 875px; /* Expanded by 25% from 700px to match wider layout */
+    margin-left: auto;
+    margin-right: auto;
+    
+    // Ensure consistent card behavior within grid
+    .tech-bite-card {
+      width: 100%;
+      box-sizing: border-box;
+      margin-left: 0; // Ensure no horizontal margins
+      margin-right: 0; // Ensure no horizontal margins
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .pagination-info {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+  
+  .pagination-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .pagination-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    
+    &:hover:not(:disabled) {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .pagination-current {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+// Tech Bite individual page
+.tech-bite-page {
+  .page-header {
+    @extend .section-header;
+  }
+  
+  .page-title {
+    @extend .section-title;
+  }
+  
+  
+  .page-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .post-date {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+  
+  .post-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .category-tag {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+  }
+  
+  .tech-bite-content {
+    max-width: 875px; /* Expanded by 25% from 700px to match wider layout */
+    margin: 0 auto 3rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+    
+    h1 { font-size: 1.5rem; font-weight: 600; }
+    h2 { font-size: 1.3rem; font-weight: 500; }
+    h3 { font-size: 1.1rem; font-weight: 500; }
+    
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+    
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+      }
+    }
+    
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background-color: var(--bg-secondary);
+      border-left: 4px solid var(--primary-color);
+      border-radius: var(--radius-md);
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    
+    code {
+      background-color: var(--bg-secondary);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      color: var(--text-color);
+    }
+    
+    pre {
+      background-color: var(--bg-secondary);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin: 2rem 0;
+      
+      code {
+        background: none;
+        padding: 0;
+        color: var(--text-color);
+      }
+    }
+    
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+  }
+  
+  .post-navigation {
+    max-width: 875px; /* Expanded by 25% from 700px to match wider layout */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+  }
+  
+  .nav-link {
+    flex: 1;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
+    
+    &:hover {
+      background-color: var(--bg-secondary);
+      color: var(--primary-color);
+    }
+    
+    .nav-direction {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    
+    .nav-title {
+      display: block;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    
+    &.nav-prev {
+      text-align: left;
+    }
+    
+    &.nav-next {
+      text-align: right;
+    }
+  }
+}
+
+// Section previews on about page
+.tech-bites-preview {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-color);
+  
+  .section-title {
+    @extend .section-title;
+  }
+  
+  .section-description {
+    @extend .section-description;
+  }
+  
+  .section-footer {
+    @extend .section-footer;
+  }
+  
+  // Ensure consistent width behavior for tech-bite cards on about page
+  .tech-bites-grid {
+    max-width: 875px; /* Expanded by 25% from 700px to match wider layout */
+    margin-left: auto;
+    margin-right: auto;
+    
+    .tech-bite-card {
+      width: 100%;
+      box-sizing: border-box;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+// Footer
+.site-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  
+  .footer-content {
+    text-align: center;
+  }
+  
+  p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin: 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .about-page .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .tech-bite-list-page .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .tech-bite-page {
+    .page-title {
+      font-size: 1.5rem;
+    }
+    
+    .tech-bite-content {
+      padding: 0 1rem;
+    }
+    
+    .post-navigation {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .page-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  
+  .post-navigation {
+    grid-template-columns: 1fr;
+  }
+  
+  
+  .about-details {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .tech-bites-grid {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    
+    // Ensure cards maintain consistent width on mobile
+    .tech-bite-card {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  
+}
