@@ -1,240 +1,115 @@
 # Spectrum - Jekyll Personal Website Theme
 
+[![Jekyll](https://img.shields.io/badge/Jekyll-%3E%3D%204.3-blue.svg)](https://jekyllrb.com/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%202.7-red.svg)](https://www.ruby-lang.org/)
+[![Responsive](https://img.shields.io/badge/Responsive-Yes-brightgreen.svg)]()
+[![SEO](https://img.shields.io/badge/SEO-Ready-brightgreen.svg)]()
+[![GitHub stars](https://img.shields.io/github/stars/dudududukim/spectrum.svg?style=social&label=Star)](https://github.com/dudududukim/spectrum)
+
 A clean, minimal Jekyll template for personal websites with a focus on tech content and photography. Built for developers, designers, and content creators who want a professional, responsive site without the complexity.
 
-## ✨ Features
+## Features
 
-- **🎨 Minimal Design**: Clean, academic-style layout with excellent typography
-- **📱 Fully Responsive**: Mobile-first design that looks great on all devices
-- **⚡ Fast & Optimized**: Lightweight CSS and optimized for performance
-- **🎯 Tech-Focused**: Dedicated section for tech insights and blog posts
-- **📸 Photography Support**: Built-in gallery and films section
-- **🔧 Easy to Customize**: Well-structured SCSS and modular components
-- **🌐 SEO Ready**: Built-in SEO optimization and structured data
-- **📄 Multiple Layouts**: About, blog list, individual posts, and gallery pages
+- Minimal Design with excellent typography
+- Fully Responsive, Mobile-first layout  
+- Fast & Optimized CSS
+- Dedicated Tech Blog and Photography sections
+- Easy to Customize with modular SCSS
+- SEO Ready with structured data
+- Multiple Layouts including About, Blog, Gallery
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Ruby 2.7+ and Bundler
 - Git
 
 ### Installation
-
-**1. Clone the repository**
+1. Clone the repo
 ```
 git clone https://github.com/dudududukim/spectrum.git
 cd spectrum
 ```
-
-**2. Install dependencies**
+2. Install dependencies
 ```
 bundle install
 ```
+3. Configure your site
+Edit `_config.yml` to update site details and social links.
 
-**3. Configure your site**
-Edit `_config.yml` with your information:
-```
-title: "Your Name"
-description: "Your website description"
-author: "Your Name"
-
-personal:
-  name: "Your Display Name"
-  bio: "Your bio here"
-  location: "Your Location"
-
-social:
-  enabled: true
-  platforms:
-    github:
-      enabled: true
-      url: "https://github.com/yourusername"
-    email:
-      enabled: true
-      url: "your@email.com"
-    linkedin:
-      enabled: true
-      url: "https://linkedin.com/in/yourusername"
-```
-
-**4. Run locally**
+4. Run locally
 ```
 bundle exec jekyll serve
 ```
+5. Open `http://localhost:4000` in your browser
 
-**5. Open your browser**
-Navigate to `http://localhost:4000`
-
-🎉 **That's it! Your site is ready!**
-
-## 📝 Adding Content
+## Adding Content
 
 ### Tech Bites (Blog Posts)
-Create files in `_tech-bites/` directory:
-
-```
-# Create a new post
-touch _tech-bites/2025-09-16-my-first-post.md
-```
-
-**Post format:**
-```
-***
-title: "Your Post Title"
-date: 2025-09-16
-categories: ["JavaScript", "Web Development"]
-description: "Brief description of your post"
-***
-
-# Your Post Content
-
-Write your content here using Markdown.
-
-## Code Examples
-
-```javascript
-const hello = () => {
-  console.log("Hello, World!");
-};
-```
-
-Your post content continues...
-```
+Create Markdown files in `_tech-bites/` with proper front matter.
 
 ### Photography (Films)
-Add images to `assets/images/films/` directory:
-```
-mkdir -p assets/images/films
-# Add your photos: photo1.jpg, photo2.jpg, etc.
-```
+Add image files to `assets/images/films/` - these display automatically in the Films section.
 
-The theme automatically displays them in the Films section.
+## Customization
 
-## 🎨 Customization
+Change colors in `_sass/color-variables.scss`.
 
-### Colors & Theme
-Edit variables in `_sass/color-variables.scss`:
-```
-:root {
-  --primary-color: #3498db;    // Change to your brand color
-  --secondary-color: #2c3e50;  // Dark color for text
-  --accent-color: #e74c3c;     // Accent/highlight color
-}
-```
+Modify typography in `_sass/base.scss`.
 
-### Typography
-Modify `_sass/base.scss` for fonts and spacing:
-```
-body {
-  font-family: 'Your-Font', Verdana, Helvetica, sans-serif;
-}
-```
+Update navigation, footer, and card styles in `_includes/` and `_sass/components.scss`.
 
-### Layout & Components
-- **Navigation**: Edit `_includes/site-navigation.html`
-- **Footer**: Modify `_includes/` components
-- **Cards**: Customize in `_sass/components.scss`
+## Deployment
 
-## 🌐 Deployment
+Supports GitHub Pages, Netlify, and Vercel with standard Jekyll build commands.
 
-### GitHub Pages
-1. Push your code to GitHub
-2. Go to **Settings** → **Pages**
-3. Select **"Deploy from a branch"**
-4. Choose **"main branch"**
-5. Your site will be live at `https://yourusername.github.io/spectrum`
-
-### Netlify (Recommended)
-1. Connect your GitHub repository to Netlify
-2. **Build command**: `bundle exec jekyll build`
-3. **Publish directory**: `_site`
-4. Deploy automatically on every push
-
-### Vercel
-1. Import your GitHub repository
-2. **Build command**: `bundle exec jekyll build`
-3. **Output directory**: `_site`
-4. Deploy with zero configuration
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 spectrum/
 ├── _includes/          # Reusable components
-│   ├── site-navigation.html
-│   ├── tech-bite-card.html
-│   └── ...
-├── _layouts/           # Page templates
-│   ├── default.html
-│   ├── about.html
-│   ├── tech-bite-list.html
-│   └── tech-bite.html
+├── _layouts/           # Page templates  
 ├── _sass/             # Stylesheets
-│   ├── base.scss
-│   ├── components.scss
-│   ├── layouts.scss
-│   └── ...
 ├── _tech-bites/       # Blog posts
-├── assets/
-│   ├── css/main.scss  # Main stylesheet
-│   └── images/films/  # Photography
+├── assets/            # Images and CSS
 ├── _config.yml        # Site configuration
 ├── index.md           # Homepage
-├── tech-bites.md      # Blog listing page
+├── tech-bites.md      # Blog listing
 ├── films.md           # Photography page
 └── README.md
 ```
 
-## 🛠️ Development
+## Development
 
-### Local Development
-```
-# Serve with live reload
-bundle exec jekyll serve --livereload
+Use `bundle exec jekyll serve` for local development with live reload.
 
-# Serve with drafts
-bundle exec jekyll serve --drafts
+## Contributing
 
-# Build for production
-bundle exec jekyll build
-```
+Fork the repository, create a feature branch, commit your changes, and open a pull request.
 
-### Adding New Features
-1. **New page**: Create `.md` file in root
-2. **New layout**: Add to `_layouts/`
-3. **New component**: Add to `_includes/`
-4. **New styles**: Add to `_sass/`
+## Author
 
-## 🤝 Contributing
+**Duhyeon Kim**
+- GitHub: [@dudududukim](https://github.com/dudududukim)
+- LinkedIn: [Duhyeon Kim](https://www.linkedin.com/in/duhyeon-kim-6623082b1/)
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## License
 
-## 📄 License
+MIT License. See LICENSE file for details.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Support
 
-## 🙋‍♂️ Support
-
-- **Issues**: [GitHub Issues](https://github.com/dudududukim/spectrum/issues)
-- **Documentation**: This README and code comments
-- **Examples**: Check the demo content in `_tech-bites/`
-
-## 🌟 Credits
-
-Built with ❤️ using:
-- [Jekyll](https://jekyllrb.com/) - Static site generator
-- [SCSS](https://sass-lang.com/) - CSS preprocessor
-- Modern CSS Grid & Flexbox for layouts
+Submit issues via GitHub Issues or check the inline documentation in the code files.
 
 ---
 
-**⭐ If you found this theme helpful, please consider giving it a star on GitHub!**
+## Show Your Support
+
+**⭐ If you find this theme helpful, please give it a star on GitHub!** Your support helps me maintain and improve this project.
+
+**⭐ Star this repository** to show your appreciation and help others discover this theme!
 
 ---
 
-**Built with Jekyll 🚀**
+**Built with Jekyll**

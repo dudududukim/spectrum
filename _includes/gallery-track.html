@@ -17,36 +17,32 @@
     <div class="section-content">
         <div class="gallery-track-container">
             <div class="gallery-track" id="gallery-track">
-                {% assign image_extensions = "jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP" | split: "," %}
-                {% assign films_images = site.static_files | where_exp: "file", "file.path contains '/assets/images/films/'" %}
                 {% assign image_count = site.sections.gallery_track.image_count | default: 6 %}
-                {% assign recent_films = films_images | limit: image_count %}
+                {% assign films = site.films | sort: 'date' | reverse %}
+                {% assign recent_films = films | limit: image_count %}
 
                 <!-- Generate gallery items with seamless loop duplication -->
+                
                 {% for i in (1..2) %}
-                    {% for file in recent_films %}
-                        {% assign file_ext = file.extname | remove: '.' %}
-                        {% if image_extensions contains file_ext %}
-                            {% assign image_name = file.name | remove: file.extname %}
-                            {% assign image_path = file.path | relative_url %}
+                    {% for film in recent_films %}
+                        {% assign image_path = film.image_path | relative_url %}
 
-                            <div class="gallery-item">
-                                <a href="{{ '/films/' | relative_url }}" class="gallery-link" aria-label="View {{ image_name | replace: '-', ' ' | capitalize }} in gallery">
-                                    <img
-                                        src="{{ image_path }}"
-                                        alt="{{ image_name | replace: '-', ' ' | capitalize }}"
-                                        class="gallery-image"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                    <div class="gallery-overlay">
-                                        <div class="gallery-info">
-                                            <span class="gallery-title">{{ image_name | replace: '-', ' ' | capitalize }}</span>
-                                        </div>
+                        <div class="gallery-item">
+                            <a href="{{ film.url | relative_url }}" class="gallery-link" aria-label="View {{ film.title }} in gallery">
+                                <img
+                                    src="{{ image_path }}"
+                                    alt="{{ film.title }}"
+                                    class="gallery-image"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                                <div class="gallery-overlay">
+                                    <div class="gallery-info">
+                                        <span class="gallery-title">{{ film.title }}</span>
                                     </div>
-                                </a>
-                            </div>
-                        {% endif %}
+                                </div>
+                            </a>
+                        </div>
                     {% endfor %}
                 {% endfor %}
             </div>

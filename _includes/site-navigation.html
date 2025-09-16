@@ -12,6 +12,12 @@
           <span class="nav-current">{{ page.title }}</span>
         {% elsif page.layout == 'about' %}
           <span class="nav-current">{{ site.content.pages.about.title | default: "About" }}</span>
+        {% elsif page.layout == 'films-list' %}
+          <span class="nav-current">{{ site.content.pages.films.title | default: "Films" }}</span>
+        {% elsif page.layout == 'film-detail' %}
+          <a href="{{ '/films/' | relative_url }}" class="nav-link">{{ site.content.pages.films.title | default: "Films" }}</a>
+          <span class="nav-separator">/</span>
+          <span class="nav-current">{{ page.title | default: page.name | remove: '.md' | replace: '-', ' ' | capitalize }}</span>
         {% else %}
           <span class="nav-current">{{ page.title | default: 'Page' }}</span>
         {% endif %}

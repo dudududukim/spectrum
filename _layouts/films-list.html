@@ -11,16 +11,9 @@ layout: default
 
         <!-- Films Grid -->
         <div class="films-grid">
-            {% assign films_dir = site.static_files | where: "path", "/assets/images/films/" %}
-            {% assign image_extensions = "jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP" | split: "," %}
-
-            {% for file in site.static_files %}
-                {% if file.path contains '/assets/images/films/' %}
-                    {% assign file_ext = file.extname | remove: '.' %}
-                    {% if image_extensions contains file_ext %}
-                        {% include photo-card.html image=file %}
-                    {% endif %}
-                {% endif %}
+            {% assign films = site.films | sort: 'date' | reverse %}
+            {% for film in films %}
+                {% include photo-card.html film=film %}
             {% endfor %}
         </div>
     </div>
