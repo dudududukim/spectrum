@@ -3,23 +3,28 @@
 
 // CSS Custom Properties for theming
 :root {
-  // Primary colors
-  --primary-color: #3498db;
-  --primary-hover: #2980b9;
-  --primary-light: #85c1e9;
-  --primary-dark: #1f618d;
+  // Base HSL values - will be dynamically set by color-calculator.html
+  --primary-h: 207;  // Default hue (will be overridden by JavaScript)
+  --primary-s: 74%;  // Default saturation (will be overridden by JavaScript)
+  --primary-l: 57%;  // Default lightness (will be overridden by JavaScript)
+  
+  // Primary colors - dynamically generated from HSL values
+  --primary-color: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+  --primary-hover: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - 10%));
+  --primary-light: hsl(var(--primary-h), calc(var(--primary-s) - 20%), calc(var(--primary-l) + 20%));
+  --primary-dark: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - 20%));
 
-  // Secondary colors
-  --secondary-color: #2c3e50;
-  --secondary-hover: #1a252f;
-  --secondary-light: #566573;
-  --secondary-dark: #1b2631;
+  // Secondary colors - dynamically generated (complementary colors)
+  --secondary-color: hsl(calc(var(--primary-h) + 180), calc(var(--primary-s) - 10%), calc(var(--primary-l) - 15%));
+  --secondary-hover: hsl(calc(var(--primary-h) + 180), calc(var(--primary-s) - 10%), calc(var(--primary-l) - 25%));
+  --secondary-light: hsl(calc(var(--primary-h) + 180), calc(var(--primary-s) - 20%), calc(var(--primary-l) + 10%));
+  --secondary-dark: hsl(calc(var(--primary-h) + 180), var(--primary-s), calc(var(--primary-l) - 30%));
 
-  // Accent colors
-  --accent-color: #e74c3c;
-  --accent-hover: #c0392b;
-  --accent-light: #f1948a;
-  --accent-dark: #a93226;
+  // Accent colors - dynamically generated (triadic colors)
+  --accent-color: hsl(calc(var(--primary-h) + 120), var(--primary-s), calc(var(--primary-l) + 5%));
+  --accent-hover: hsl(calc(var(--primary-h) + 120), var(--primary-s), calc(var(--primary-l) - 10%));
+  --accent-light: hsl(calc(var(--primary-h) + 120), calc(var(--primary-s) - 15%), calc(var(--primary-l) + 25%));
+  --accent-dark: hsl(calc(var(--primary-h) + 120), var(--primary-s), calc(var(--primary-l) - 20%));
 
   // Neutral colors
   --white: #ffffff;
@@ -35,11 +40,11 @@
   --gray-800: #212529;
   --gray-900: #121416;
 
-  // Semantic colors
-  --success-color: #27ae60;
-  --warning-color: #f39c12;
-  --error-color: #e74c3c;
-  --info-color: #3498db;
+  // Semantic colors - dynamically generated
+  --success-color: hsl(calc(var(--primary-h) + 30), calc(var(--primary-s) + 10%), calc(var(--primary-l) - 5%));
+  --warning-color: hsl(calc(var(--primary-h) - 30), calc(var(--primary-s) + 15%), calc(var(--primary-l) + 10%));
+  --error-color: hsl(calc(var(--primary-h) + 120), var(--primary-s), calc(var(--primary-l) + 5%));
+  --info-color: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
 
   // Background colors
   --bg-color: #ffffff;
