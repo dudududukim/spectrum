@@ -140,7 +140,7 @@ content:
         back_home_text: "Back to Home"
 
 # Theme Configuration (consolidated from theme.yml)
-theme:
+site_theme:
   colors:
     primary: "#3498db"
     secondary: "#2c3e50"
