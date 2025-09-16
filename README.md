@@ -15,6 +15,8 @@ _👆 Click here to see the live demo!_
 
 </div>
 
+![Homepage Light](images/white_main.png)
+
 A clean and minimal **Jekyll theme** designed for personal websites and blogs with a focus on simplicity and customizability. Perfect for professional researchers, undergraduates, and creators from diverse backgrounds who want an easy-to-use yet flexible platform.
 
 # Spectrum Jekyll Theme
