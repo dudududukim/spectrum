@@ -12,10 +12,10 @@ timezone: UTC
 site:
   title: "Duhyeon Kim"
   description: "Personal website showcasing tech insights and development journey"
-  url: "https://yoursite.com"
-  baseurl: ""
+  url: "https://dudududukim.github.io"
+  baseurl: "/spectrum"
   author: "Duhyeon Kim"
-  email: "your@email.com"
+  email: "kdhluck@naver.com"
 
 # Theme Configuration
 site_theme:
