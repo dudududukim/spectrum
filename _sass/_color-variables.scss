@@ -138,12 +138,17 @@
 // System preference detection (only when no manual theme is set)
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    // Dark theme colors (system preference)
-    --bg-color: #0f0f0f;
-    --bg-secondary: #1a1a1a;
-    --bg-tertiary: #262626;
-    --bg-elevated: #1f1f1f;
-    --bg-overlay: rgba(15, 15, 15, 0.95);
+    // Dark theme colors (system preference) - Optimized for readability
+    --bg-color: #181818;
+    --bg-secondary: #242424;
+    --bg-tertiary: #2a2a2a;
+    --bg-elevated: #2a2a2a;
+    --bg-overlay: rgba(24, 24, 24, 0.95);
+    
+    // Card-specific variables for better hierarchy
+    --card-bg: #242424;
+    --card-bg-hover: #2a2a2a;
+    --card-border: #404040;
 
     // Text colors - Enhanced contrast for accessibility
     --text-color: #f5f5f5;
@@ -151,28 +156,38 @@
     --text-muted: #9ca3af;
     --text-inverse: #0f0f0f;
 
-    // Border colors
-    --border-color: #374151;
-    --border-light: #1f2937;
+    // Border colors - Better contrast
+    --border-color: #404040;
+    --border-light: #2a2a2a;
     --border-dark: #6b7280;
     --border-focus: var(--primary-color);
 
-    // Shadow colors - Softer for dark mode
-    --shadow-light: rgba(0, 0, 0, 0.3);
-    --shadow-medium: rgba(0, 0, 0, 0.4);
-    --shadow-dark: rgba(0, 0, 0, 0.6);
-    --shadow-elevated: rgba(0, 0, 0, 0.2);
+    // Shadow colors - White/gray shadows for dark mode
+    --shadow-light: rgba(157, 157, 157, 0.1);
+    --shadow-medium: rgba(157, 157, 157, 0.15);
+    --shadow-dark: rgba(157, 157, 157, 0.25);
+    --shadow-elevated: rgba(157, 157, 157, 0.08);
+    
+    // Overlay colors for better theme adaptation
+    --overlay-light: rgba(0, 0, 0, 0.1);
+    --overlay-medium: rgba(0, 0, 0, 0.3);
+    --overlay-dark: rgba(0, 0, 0, 0.7);
   }
 }
 
 // Dark mode data attribute (higher specificity without !important for smooth transitions)
 html[data-theme="dark"] {
-  // Dark theme colors (manual selection)
-  --bg-color: #0f0f0f;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #262626;
-  --bg-elevated: #1f1f1f;
-  --bg-overlay: rgba(15, 15, 15, 0.95);
+  // Dark theme colors (manual selection) - Optimized for readability
+  --bg-color: #181818;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2a2a2a;
+  --bg-elevated: #2a2a2a;
+  --bg-overlay: rgba(24, 24, 24, 0.95);
+  
+  // Card-specific variables for better hierarchy
+  --card-bg: #242424;
+  --card-bg-hover: #2a2a2a;
+  --card-border: #404040;
 
   // Text colors - Enhanced contrast for accessibility
   --text-color: #f5f5f5;
@@ -180,17 +195,22 @@ html[data-theme="dark"] {
   --text-muted: #9ca3af;
   --text-inverse: #0f0f0f;
 
-  // Border colors
-  --border-color: #374151;
-  --border-light: #1f2937;
+  // Border colors - Better contrast
+  --border-color: #404040;
+  --border-light: #2a2a2a;
   --border-dark: #6b7280;
   --border-focus: var(--primary-color);
 
-  // Shadow colors - Softer for dark mode
-  --shadow-light: rgba(0, 0, 0, 0.3);
-  --shadow-medium: rgba(0, 0, 0, 0.4);
-  --shadow-dark: rgba(0, 0, 0, 0.6);
-  --shadow-elevated: rgba(0, 0, 0, 0.2);
+  // Shadow colors - White/gray shadows for dark mode
+  --shadow-light: rgba(157, 157, 157, 0.1);
+  --shadow-medium: rgba(157, 157, 157, 0.15);
+  --shadow-dark: rgba(157, 157, 157, 0.25);
+  --shadow-elevated: rgba(157, 157, 157, 0.08);
+  
+  // Overlay colors for better theme adaptation
+  --overlay-light: rgba(0, 0, 0, 0.1);
+  --overlay-medium: rgba(0, 0, 0, 0.3);
+  --overlay-dark: rgba(0, 0, 0, 0.7);
 }
 
 // Light mode data attribute (higher specificity without !important for smooth transitions)
@@ -201,6 +221,11 @@ html[data-theme="light"] {
   --bg-tertiary: #e9ecef;
   --bg-elevated: #ffffff;
   --bg-overlay: rgba(255, 255, 255, 0.95);
+  
+  // Card-specific variables for better hierarchy
+  --card-bg: #ffffff;
+  --card-bg-hover: #f8f9fa;
+  --card-border: #dee2e6;
 
   // Text colors
   --text-color: #2c3e50;
@@ -219,6 +244,11 @@ html[data-theme="light"] {
   --shadow-medium: rgba(0, 0, 0, 0.15);
   --shadow-dark: rgba(0, 0, 0, 0.25);
   --shadow-elevated: rgba(0, 0, 0, 0.1);
+  
+  // Overlay colors for better theme adaptation
+  --overlay-light: rgba(0, 0, 0, 0.1);
+  --overlay-medium: rgba(0, 0, 0, 0.3);
+  --overlay-dark: rgba(0, 0, 0, 0.7);
 }
 
 
@@ -303,7 +333,7 @@ html[data-theme="light"] {
 }
 
 .hover-shadow:hover {
-  box-shadow: 0 4px 12px var(--shadow-medium);
+  box-shadow: 0 4px 12px var(--shadow-dark);
   transition: box-shadow var(--transition-fast);
 }
 

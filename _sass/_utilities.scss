@@ -235,7 +235,7 @@
 
 // Focus utilities
 .focus-outline:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
-.focus-ring:focus { box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25); }
+.focus-ring:focus { box-shadow: 0 0 0 3px hsl(var(--primary-h), var(--primary-s), var(--primary-l), 0.25); }
 
 // Screen reader utilities
 .sr-only {
