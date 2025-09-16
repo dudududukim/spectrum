@@ -57,7 +57,7 @@ social:
   platforms:
     email:
       enabled: true
-      url: "kdhluck@naver.com"
+      url: "mailto:kdhluck@naver.com"
       label: "Email"
       icon: "fa-solid fa-envelope"
     github:
