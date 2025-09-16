@@ -1,7 +1,6 @@
 # Spectrum Jekyll Theme
 
-[![Gem Version](https://badge.fury.io/rb/spectrum.svg)](https://badge.fury.io/rb/spectrum)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Jekyll](https://img.shields.io/badge/Jekyll-%3E%3D%204.3-blue.svg)](https://jekyllrb.com/)
 
 A clean, minimal Jekyll theme designed for developers and tech enthusiasts. Perfect for personal websites, tech blogs, and portfolios with a focus on readability and performance.
 
@@ -18,65 +17,68 @@ A clean, minimal Jekyll theme designed for developers and tech enthusiasts. Perf
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Ruby 2.7+
+- Bundler
+- Jekyll 4.3+
+
 ### Installation
 
-Add this line to your Jekyll site's `Gemfile`:
+1. **Clone and setup**
+   ```
+   git clone https://github.com/dudududukim/spectrum.git
+   cd spectrum
+   bundle install
+   ```
+
+2. **Configure your site** by editing `_config.yml`:
+   ```
+   title: "Your Name"
+   description: "Your website description"
+   url: "https://yoursite.com"
+   author: "Your Name"
+
+   personal:
+     name: "Your Display Name"
+     bio: "Developer passionate about technology, design, and continuous learning"
+     location: "Your Location"
+
+   social:
+     enabled: true
+     platforms:
+       github:
+         enabled: true
+         url: "https://github.com/username"
+       linkedin:
+         enabled: true
+         url: "https://linkedin.com/in/username"
+       email:
+         enabled: true
+         url: "your@email.com"
+   ```
+
+3. **Run your site locally**:
+   ```
+   bundle exec jekyll serve
+   ```
+
+4. **Visit** `http://localhost:4000` to see your site!
+
+### 🔮 Future: Gem Installation (Coming Soon)
+
+We're working on distributing this theme as a gem for easier installation and updates:
 
 ```
+# This will be available soon
 gem "spectrum"
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
-
 ```
+# _config.yml
 theme: spectrum
 ```
 
-And then execute:
-```
-$ bundle install
-```
-
-Or install it yourself as:
-```
-$ gem install spectrum
-```
-
-### Setup
-
-1. **Configure your site** by editing `_config.yml`:
-
-```
-title: "Your Name"
-description: "Your website description"
-url: "https://yoursite.com"
-author: "Your Name"
-
-personal:
-  name: "Your Display Name"
-  bio: "Developer passionate about technology, design, and continuous learning"
-  location: "Your Location"
-
-social:
-  enabled: true
-  platforms:
-    github:
-      enabled: true
-      url: "https://github.com/username"
-    linkedin:
-      enabled: true
-      url: "https://linkedin.com/in/username"
-    email:
-      enabled: true
-      url: "your@email.com"
-```
-
-2. **Run your site locally**:
-```
-bundle exec jekyll serve
-```
-
-3. **Visit** `http://localhost:4000` to see your site!
+**Stay tuned for the gem release!**
 
 ## 📖 Usage
 
@@ -143,9 +145,11 @@ $line-height: 1.6;
 │   ├── components.scss
 │   ├── layouts.scss
 │   └── utilities.scss
-└── assets/
-    └── css/
-        └── main.scss
+├── _tech-bites/       # Your tech content goes here
+├── assets/
+│   ├── css/
+│   └── images/
+└── _config.yml        # Main configuration
 ```
 
 ## 🎨 Customization Guide
@@ -185,28 +189,52 @@ primary:
 
 ### GitHub Pages
 
-1. Push your site to GitHub
-2. Go to **Settings** > **Pages**
-3. Select **Deploy from a branch** > **main**
-4. Your site will be available at `https://username.github.io/repository-name`
+1. Fork this repository to your GitHub account
+2. Rename it to `username.github.io` (replace `username` with your GitHub username)
+3. Edit `_config.yml` with your information
+4. Go to **Settings** > **Pages**
+5. Select **Deploy from a branch** > **main**
+6. Your site will be available at `https://username.github.io`
 
 ### Netlify
 
-1. Connect your repository to Netlify
-2. Set build command: `bundle exec jekyll build`
-3. Set publish directory: `_site`
-4. Deploy!
+1. Fork this repository
+2. Connect your forked repository to Netlify
+3. Set build command: `bundle exec jekyll build`
+4. Set publish directory: `_site`
+5. Deploy!
 
 ### Vercel
 
-1. Import your repository to Vercel
-2. Framework: **Jekyll**
-3. Build command: `bundle exec jekyll build`
-4. Output directory: `_site`
+1. Fork this repository
+2. Import your forked repository to Vercel
+3. Framework: **Jekyll**
+4. Build command: `bundle exec jekyll build`
+5. Output directory: `_site`
+
+## 📋 Development Roadmap
+
+- [x] Core theme functionality
+- [x] Responsive design
+- [x] Dark mode support
+- [x] Tech Bites system
+- [x] Photo gallery
+- [ ] **Gem distribution** (In Progress)
+- [ ] Theme customization UI
+- [ ] Additional layout options
+- [ ] Plugin ecosystem
 
 ## 🤝 Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dudududukim/spectrum. This project is intended to be a safe, welcoming space for collaboration.
+Bug reports and pull requests are welcome on GitHub at [https://github.com/dudududukim/spectrum](https://github.com/dudududukim/spectrum). This project is intended to be a safe, welcoming space for collaboration.
+
+### Development Setup
+
+1. Fork the repository
+2. Clone your fork: `git clone https://github.com/your-username/spectrum.git`
+3. Create a feature branch: `git checkout -b feature-name`
+4. Make your changes and test locally
+5. Submit a pull request
 
 ## 📄 License
 
@@ -219,7 +247,7 @@ If you like this theme, please consider:
 - ⭐ Starring the repository
 - 🐛 Reporting bugs or suggesting features
 - 🔗 Sharing it with others
-- ☕ [Buying me a coffee](https://github.com/sponsors/dudududukim)
+- 💬 Joining discussions in Issues
 
 ## 👨‍💻 Author
 
@@ -230,3 +258,5 @@ If you like this theme, please consider:
 ---
 
 Built with ❤️ using Jekyll and modern web technologies.
+
+**Ready to get started?** Clone the repository and start building your awesome Jekyll site!
