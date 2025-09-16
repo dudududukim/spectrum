@@ -135,9 +135,9 @@
   }
 }
 
-// System preference detection
+// System preference detection (only when no manual theme is set)
 @media (prefers-color-scheme: dark) {
-  :root:not(.light-mode) {
+  :root:not([data-theme]) {
     // Dark theme colors (system preference)
     --bg-color: #0f0f0f;
     --bg-secondary: #1a1a1a;
@@ -165,74 +165,89 @@
   }
 }
 
-// Dark mode class (manual override)
-.dark-mode {
+// Dark mode data attribute (manual override with higher specificity)
+[data-theme="dark"] {
   // Dark theme colors (manual selection)
-  --bg-color: #0f0f0f;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #262626;
-  --bg-elevated: #1f1f1f;
-  --bg-overlay: rgba(15, 15, 15, 0.95);
+  --bg-color: #0f0f0f !important;
+  --bg-secondary: #1a1a1a !important;
+  --bg-tertiary: #262626 !important;
+  --bg-elevated: #1f1f1f !important;
+  --bg-overlay: rgba(15, 15, 15, 0.95) !important;
 
   // Text colors - Enhanced contrast for accessibility
-  --text-color: #f5f5f5;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
-  --text-inverse: #0f0f0f;
+  --text-color: #f5f5f5 !important;
+  --text-secondary: #d1d5db !important;
+  --text-muted: #9ca3af !important;
+  --text-inverse: #0f0f0f !important;
 
   // Border colors
-  --border-color: #374151;
-  --border-light: #1f2937;
-  --border-dark: #6b7280;
-  --border-focus: var(--primary-color);
+  --border-color: #374151 !important;
+  --border-light: #1f2937 !important;
+  --border-dark: #6b7280 !important;
+  --border-focus: var(--primary-color) !important;
 
   // Shadow colors - Softer for dark mode
-  --shadow-light: rgba(0, 0, 0, 0.3);
-  --shadow-medium: rgba(0, 0, 0, 0.4);
-  --shadow-dark: rgba(0, 0, 0, 0.6);
-  --shadow-elevated: rgba(0, 0, 0, 0.2);
+  --shadow-light: rgba(0, 0, 0, 0.3) !important;
+  --shadow-medium: rgba(0, 0, 0, 0.4) !important;
+  --shadow-dark: rgba(0, 0, 0, 0.6) !important;
+  --shadow-elevated: rgba(0, 0, 0, 0.2) !important;
 }
 
-// Light mode class (manual override)
-.light-mode {
+// Light mode data attribute (manual override with higher specificity)
+[data-theme="light"] {
   // Light theme colors (manual selection)
-  --bg-color: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #e9ecef;
-  --bg-elevated: #ffffff;
-  --bg-overlay: rgba(255, 255, 255, 0.95);
+  --bg-color: #ffffff !important;
+  --bg-secondary: #f8f9fa !important;
+  --bg-tertiary: #e9ecef !important;
+  --bg-elevated: #ffffff !important;
+  --bg-overlay: rgba(255, 255, 255, 0.95) !important;
 
   // Text colors
-  --text-color: #2c3e50;
-  --text-secondary: #6c757d;
-  --text-muted: #adb5bd;
-  --text-inverse: #ffffff;
+  --text-color: #2c3e50 !important;
+  --text-secondary: #6c757d !important;
+  --text-muted: #adb5bd !important;
+  --text-inverse: #ffffff !important;
 
   // Border colors
-  --border-color: #dee2e6;
-  --border-light: #e9ecef;
-  --border-dark: #adb5bd;
-  --border-focus: var(--primary-color);
+  --border-color: #dee2e6 !important;
+  --border-light: #e9ecef !important;
+  --border-dark: #adb5bd !important;
+  --border-focus: var(--primary-color) !important;
 
   // Shadow colors
-  --shadow-light: rgba(0, 0, 0, 0.1);
-  --shadow-medium: rgba(0, 0, 0, 0.15);
-  --shadow-dark: rgba(0, 0, 0, 0.25);
-  --shadow-elevated: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(0, 0, 0, 0.1) !important;
+  --shadow-medium: rgba(0, 0, 0, 0.15) !important;
+  --shadow-dark: rgba(0, 0, 0, 0.25) !important;
+  --shadow-elevated: rgba(0, 0, 0, 0.1) !important;
 }
 
-// Smooth transitions for theme switching
-* {
+// Enhanced smooth transitions for theme switching
+*,
+*::before,
+*::after {
   transition: 
-    background-color var(--transition-theme),
-    color var(--transition-theme),
-    border-color var(--transition-theme),
-    box-shadow var(--transition-theme);
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // Disable transitions during initial load to prevent flash
-.no-transitions * {
+.theme-loading *,
+.theme-loading *::before,
+.theme-loading *::after {
   transition: none !important;
+}
+
+// Respect user's motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
 
 // Color utility classes

@@ -370,7 +370,7 @@
     }
 
     // Dark mode state
-    .dark-mode & {
+    [data-theme="dark"] & {
       .theme-toggle-track {
         background-color: var(--bg-tertiary);
       }
@@ -389,7 +389,7 @@
     }
 
     // Light mode state (when explicitly set)
-    .light-mode & {
+    [data-theme="light"] & {
       .theme-toggle-track {
         background-color: var(--bg-secondary);
       }
@@ -536,7 +536,7 @@
         font-size: 0.6rem;
       }
 
-      .dark-mode & .theme-toggle-slider {
+      [data-theme="dark"] & .theme-toggle-slider {
         transform: translateX(1.25rem);
       }
     }
@@ -627,7 +627,7 @@
         font-size: 0.65rem;
       }
 
-      .dark-mode & .theme-toggle-slider {
+      [data-theme="dark"] & .theme-toggle-slider {
         transform: translateX(1.375rem);
       }
     }
