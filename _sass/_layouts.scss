@@ -154,11 +154,18 @@
   }
 
   .category-tag {
-    background-color: white;
+    background-color: var(--bg-color);
     color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-sm);
     font-size: 0.75rem;
+    transition: all var(--transition-fast);
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+    }
   }
 
   .tech-bite-content {

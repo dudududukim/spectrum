@@ -1,8 +1,7 @@
 /**
- * Enhanced Theme Toggle
- * Fixes double-click issue and provides smooth transitions
- * Uses data attributes for better CSS specificity
- * Includes comprehensive error handling and accessibility features
+ * Clean Theme Toggle
+ * Simple, minimal theme switching with data attributes
+ * Includes error handling and accessibility features
  */
 
 class ThemeToggle {
@@ -10,12 +9,7 @@ class ThemeToggle {
         this.storageKey = 'jekyll-terminal-theme';
         this.theme = null;
         this.isInitialized = false;
-        this.debounceTimer = null;
         this.mediaQuery = null;
-        this.isTransitioning = false;
-        
-        // Prevent flash of unstyled content
-        document.documentElement.classList.add('theme-loading');
         
         this.init();
     }
@@ -26,17 +20,11 @@ class ThemeToggle {
             this.setupEventListeners();
             this.applyTheme();
             this.isInitialized = true;
-            
-            // Remove loading class after initialization
-            requestAnimationFrame(() => {
-                document.documentElement.classList.remove('theme-loading');
-            });
         } catch (error) {
             console.error('ThemeToggle initialization failed:', error);
             // Fallback to system theme
             this.theme = this.getSystemTheme();
             this.applyTheme();
-            document.documentElement.classList.remove('theme-loading');
         }
     }
     
@@ -77,19 +65,20 @@ class ThemeToggle {
             return;
         }
         
-        // Prevent rapid theme switching
-        if (this.isTransitioning) {
-            return;
-        }
-        
-        this.isTransitioning = true;
         this.theme = theme;
         
-        // Remove any existing theme attributes
+        // Direct, synchronous DOM manipulation
         document.documentElement.removeAttribute('data-theme');
-        
-        // Set new theme attribute
         document.documentElement.setAttribute('data-theme', theme);
+        
+        // Update theme color meta tag
+        this.updateThemeColorMeta();
+        
+        // Update ARIA attributes
+        this.updateAriaAttributes();
+        
+        // Dispatch custom event
+        this.dispatchThemeChangeEvent();
         
         // Store in localStorage with error handling
         try {
@@ -107,44 +96,25 @@ class ThemeToggle {
                 }
             }
         }
+    }
+    
+    toggleTheme() {
+        const newTheme = this.theme === 'dark' ? 'light' : 'dark';
+        this.setTheme(newTheme);
+    }
+    
+    applyTheme() {
+        // Direct, synchronous theme application
+        document.documentElement.removeAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', this.theme);
         
         // Update theme color meta tag
         this.updateThemeColorMeta();
         
         // Update ARIA attributes
         this.updateAriaAttributes();
-        
-        // Dispatch custom event
-        this.dispatchThemeChangeEvent();
-        
-        // Reset transition flag after animation completes
-        setTimeout(() => {
-            this.isTransitioning = false;
-        }, 300);
     }
     
-    toggleTheme() {
-        // Debounce rapid clicks
-        if (this.debounceTimer) {
-            clearTimeout(this.debounceTimer);
-        }
-        
-        this.debounceTimer = setTimeout(() => {
-            const newTheme = this.theme === 'dark' ? 'light' : 'dark';
-            this.setTheme(newTheme);
-        }, 100);
-    }
-    
-    applyTheme() {
-        // Remove any existing theme attributes
-        document.documentElement.removeAttribute('data-theme');
-        
-        // Apply the current theme
-        document.documentElement.setAttribute('data-theme', this.theme);
-        
-        // Update theme color meta tag
-        this.updateThemeColorMeta();
-    }
     
     updateThemeColorMeta() {
         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
@@ -194,7 +164,7 @@ class ThemeToggle {
                 }
             });
             
-            // Enhanced keyboard accessibility
+            // Keyboard accessibility
             themeToggle.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -212,7 +182,7 @@ class ThemeToggle {
             });
         }
         
-        // Listen for system theme changes with proper cleanup
+        // Listen for system theme changes
         if (window.matchMedia) {
             try {
                 this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -226,24 +196,6 @@ class ThemeToggle {
                 });
             } catch (error) {
                 console.warn('Failed to setup system theme listener:', error);
-            }
-        }
-        
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', () => {
-            this.cleanup();
-        });
-    }
-    
-    cleanup() {
-        if (this.debounceTimer) {
-            clearTimeout(this.debounceTimer);
-        }
-        if (this.mediaQuery) {
-            try {
-                this.mediaQuery.removeEventListener('change', this.handleSystemThemeChange);
-            } catch (error) {
-                console.warn('Failed to cleanup media query listener:', error);
             }
         }
     }
