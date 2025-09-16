@@ -124,12 +124,18 @@
 .card-grid {
   // Grid layout for cards when needed
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // 300px → 280px로 감소
   gap: 1.5rem;
 
   @media (max-width: 767px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; // 모바일에서 단일 컬럼
     gap: 1rem;
+  }
+  
+  // 매우 작은 화면에서 추가 조정
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }
 

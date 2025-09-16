@@ -248,11 +248,18 @@ button {
 // Responsive breakpoints
 @media (max-width: 767px) {
   .page-wrapper {
-    padding: var(--nav-height-mobile, 5.5rem) 0.75rem 0; /* Add top padding for fixed navigation on mobile, remove bottom padding */
+    padding: var(--nav-height-mobile, 5.5rem) 0.5rem 0; // 0.75rem → 0.5rem
+    max-width: 100%; // 최대 너비 100% 보장
   }
 
   body {
     font-size: 0.85rem;
+    overflow-x: hidden; // 가로 스크롤 방지
+  }
+
+  .container {
+    padding: 0 0.5rem; // 패딩 감소
+    max-width: 100%;
   }
 
   h1 { font-size: 1.5rem; }
@@ -264,6 +271,17 @@ button {
 
   p {
     margin-bottom: 0.6rem;
+  }
+}
+
+// 매우 작은 화면 추가
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: var(--nav-height-mobile, 5.5rem) 0.25rem 0;
+  }
+  
+  .container {
+    padding: 0 0.25rem;
   }
 }
 

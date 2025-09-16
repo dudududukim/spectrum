@@ -109,6 +109,21 @@
   --z-tooltip: 1070;
 }
 
+// 모바일 반응형 변수
+@media (max-width: 767px) {
+  :root {
+    --content-max-width: calc(100% - 1rem);
+    --site-max-width: 100%;
+    --max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --content-max-width: calc(100% - 0.5rem);
+  }
+}
+
 // Dark mode color overrides
 .dark-mode {
   // Background colors
