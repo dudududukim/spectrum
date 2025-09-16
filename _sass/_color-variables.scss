@@ -221,7 +221,7 @@
   --shadow-elevated: rgba(0, 0, 0, 0.1) !important;
 }
 
-// Enhanced smooth transitions for theme switching
+// Enhanced smooth transitions for theme switching with performance optimizations
 *,
 *::before,
 *::after {
@@ -231,7 +231,19 @@
     border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    outline-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Performance optimizations
+  will-change: auto;
+}
+
+// Optimize specific elements for better performance
+.theme-toggle,
+.theme-toggle-track,
+.theme-toggle-slider {
+  will-change: transform, background-color;
+  transform: translateZ(0); // Force hardware acceleration
 }
 
 // Disable transitions during initial load to prevent flash
@@ -247,6 +259,41 @@
   *::before,
   *::after {
     transition: none !important;
+  }
+  
+  .theme-toggle,
+  .theme-toggle-track,
+  .theme-toggle-slider {
+    will-change: auto;
+    transform: none;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  [data-theme="dark"] {
+    --bg-color: #000000 !important;
+    --text-color: #ffffff !important;
+    --border-color: #ffffff !important;
+  }
+  
+  [data-theme="light"] {
+    --bg-color: #ffffff !important;
+    --text-color: #000000 !important;
+    --border-color: #000000 !important;
+  }
+}
+
+// Fallback for browsers without CSS custom property support
+@supports not (--css: variables) {
+  :root {
+    background-color: #ffffff;
+    color: #2c3e50;
+  }
+  
+  .dark-mode {
+    background-color: #0f0f0f;
+    color: #f5f5f5;
   }
 }
 

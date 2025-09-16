@@ -300,7 +300,7 @@
     }
   }
 
-  // Theme Toggle Switch - Centered
+  // Theme Toggle Switch - Centered with mobile optimizations
   .theme-toggle {
     position: absolute;
     left: 50%;
@@ -315,6 +315,21 @@
     margin: 0;
     outline: none;
     cursor: pointer;
+    
+    // Mobile touch target optimization (minimum 44px)
+    min-width: 44px;
+    min-height: 44px;
+    
+    // Accessibility improvements
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    // Touch feedback for mobile
+    &:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
 
     &:focus {
       outline: none;

@@ -2,12 +2,17 @@
  * Enhanced Theme Toggle
  * Fixes double-click issue and provides smooth transitions
  * Uses data attributes for better CSS specificity
+ * Includes comprehensive error handling and accessibility features
  */
 
 class ThemeToggle {
     constructor() {
         this.storageKey = 'jekyll-terminal-theme';
         this.theme = null;
+        this.isInitialized = false;
+        this.debounceTimer = null;
+        this.mediaQuery = null;
+        this.isTransitioning = false;
         
         // Prevent flash of unstyled content
         document.documentElement.classList.add('theme-loading');
@@ -16,14 +21,23 @@ class ThemeToggle {
     }
     
     init() {
-        this.loadTheme();
-        this.setupEventListeners();
-        this.applyTheme();
-        
-        // Remove loading class after initialization
-        requestAnimationFrame(() => {
+        try {
+            this.loadTheme();
+            this.setupEventListeners();
+            this.applyTheme();
+            this.isInitialized = true;
+            
+            // Remove loading class after initialization
+            requestAnimationFrame(() => {
+                document.documentElement.classList.remove('theme-loading');
+            });
+        } catch (error) {
+            console.error('ThemeToggle initialization failed:', error);
+            // Fallback to system theme
+            this.theme = this.getSystemTheme();
+            this.applyTheme();
             document.documentElement.classList.remove('theme-loading');
-        });
+        }
     }
     
     getStoredTheme() {
@@ -36,8 +50,12 @@ class ThemeToggle {
     }
     
     getSystemTheme() {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
+        try {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+        } catch (error) {
+            console.warn('Failed to detect system theme:', error);
         }
         return 'light';
     }
@@ -59,6 +77,12 @@ class ThemeToggle {
             return;
         }
         
+        // Prevent rapid theme switching
+        if (this.isTransitioning) {
+            return;
+        }
+        
+        this.isTransitioning = true;
         this.theme = theme;
         
         // Remove any existing theme attributes
@@ -67,23 +91,48 @@ class ThemeToggle {
         // Set new theme attribute
         document.documentElement.setAttribute('data-theme', theme);
         
-        // Store in localStorage
+        // Store in localStorage with error handling
         try {
             localStorage.setItem(this.storageKey, theme);
         } catch (e) {
             console.warn('Failed to save theme to localStorage:', e);
+            // Handle quota exceeded or private browsing
+            if (e.name === 'QuotaExceededError') {
+                console.warn('localStorage quota exceeded, clearing old data');
+                try {
+                    localStorage.clear();
+                    localStorage.setItem(this.storageKey, theme);
+                } catch (clearError) {
+                    console.error('Failed to clear localStorage:', clearError);
+                }
+            }
         }
         
         // Update theme color meta tag
         this.updateThemeColorMeta();
         
+        // Update ARIA attributes
+        this.updateAriaAttributes();
+        
         // Dispatch custom event
         this.dispatchThemeChangeEvent();
+        
+        // Reset transition flag after animation completes
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 300);
     }
     
     toggleTheme() {
-        const newTheme = this.theme === 'dark' ? 'light' : 'dark';
-        this.setTheme(newTheme);
+        // Debounce rapid clicks
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
+        
+        this.debounceTimer = setTimeout(() => {
+            const newTheme = this.theme === 'dark' ? 'light' : 'dark';
+            this.setTheme(newTheme);
+        }, 100);
     }
     
     applyTheme() {
@@ -111,6 +160,16 @@ class ThemeToggle {
         }
     }
     
+    updateAriaAttributes() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const nextTheme = this.theme === 'dark' ? 'light' : 'dark';
+            themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
+            themeToggle.setAttribute('aria-pressed', this.theme === 'dark' ? 'true' : 'false');
+            themeToggle.setAttribute('title', `Current: ${this.theme} mode. Click to switch to ${nextTheme} mode`);
+        }
+    }
+    
     dispatchThemeChangeEvent() {
         window.dispatchEvent(new CustomEvent('themeChanged', {
             detail: {
@@ -125,31 +184,67 @@ class ThemeToggle {
         // Theme toggle button
         const themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
+            // Click event with error handling
             themeToggle.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.toggleTheme();
+                try {
+                    this.toggleTheme();
+                } catch (error) {
+                    console.error('Theme toggle failed:', error);
+                }
             });
             
-            // Keyboard accessibility
+            // Enhanced keyboard accessibility
             themeToggle.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    this.toggleTheme();
+                    try {
+                        this.toggleTheme();
+                    } catch (error) {
+                        console.error('Theme toggle failed:', error);
+                    }
                 }
+            });
+            
+            // Focus management for accessibility
+            themeToggle.addEventListener('focus', () => {
+                themeToggle.setAttribute('aria-describedby', 'theme-toggle-description');
             });
         }
         
-        // Listen for system theme changes
+        // Listen for system theme changes with proper cleanup
         if (window.matchMedia) {
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            mediaQuery.addEventListener('change', (e) => {
-                // Only update if no manual theme is stored
-                const storedTheme = this.getStoredTheme();
-                if (!storedTheme) {
-                    const newTheme = e.matches ? 'dark' : 'light';
-                    this.setTheme(newTheme);
-                }
-            });
+            try {
+                this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                this.mediaQuery.addEventListener('change', (e) => {
+                    // Only update if no manual theme is stored
+                    const storedTheme = this.getStoredTheme();
+                    if (!storedTheme) {
+                        const newTheme = e.matches ? 'dark' : 'light';
+                        this.setTheme(newTheme);
+                    }
+                });
+            } catch (error) {
+                console.warn('Failed to setup system theme listener:', error);
+            }
+        }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            this.cleanup();
+        });
+    }
+    
+    cleanup() {
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
+        if (this.mediaQuery) {
+            try {
+                this.mediaQuery.removeEventListener('change', this.handleSystemThemeChange);
+            } catch (error) {
+                console.warn('Failed to cleanup media query listener:', error);
+            }
         }
     }
     

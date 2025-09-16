@@ -29,14 +29,17 @@
       class="theme-toggle" 
       id="theme-toggle"
       aria-label="Toggle dark mode"
+      aria-pressed="false"
+      role="switch"
       title="Toggle theme"
     >
       <div class="theme-toggle-track">
         <div class="theme-toggle-slider">
-          <i class="fas fa-sun theme-toggle-icon theme-toggle-sun"></i>
-          <i class="fas fa-moon theme-toggle-icon theme-toggle-moon"></i>
+          <i class="fas fa-sun theme-toggle-icon theme-toggle-sun" aria-hidden="true"></i>
+          <i class="fas fa-moon theme-toggle-icon theme-toggle-moon" aria-hidden="true"></i>
         </div>
       </div>
+      <span class="sr-only" id="theme-toggle-description">Switch between light and dark themes</span>
     </button>
 
     {% if site.navigation.show_social and site.social.enabled %}
