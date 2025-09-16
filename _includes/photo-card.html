@@ -1,0 +1,23 @@
+{% assign image = include.image %}
+{% assign image_name = image.name | remove: image.extname %}
+{% assign image_path = image.path | relative_url %}
+
+<article class="photo-card card" data-image="{{ image_name }}">
+    <div class="photo-container">
+        <a href="{{ image_path }}" class="photo-link" data-lightbox="films" data-title="{{ image_name | replace: '-', ' ' | capitalize }}">
+            <img
+                src="{{ image_path }}"
+                alt="{{ image_name | replace: '-', ' ' | capitalize }}"
+                class="photo-image"
+                loading="lazy"
+                decoding="async"
+            />
+            <div class="photo-overlay">
+                <div class="photo-info">
+                    <h3 class="photo-title">{{ image_name | replace: '-', ' ' | capitalize }}</h3>
+                    <span class="photo-meta">{{ image.extname | remove: '.' | upcase }}</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</article>

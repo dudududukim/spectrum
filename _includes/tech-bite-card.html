@@ -1,5 +1,5 @@
 {% assign tech_bite = include.tech_bite %}
-<article class="tech-bite-card" 
+<article class="tech-bite-card"
          data-date="{{ tech_bite.date | date: '%Y-%m-%d' }}">
     <div class="card-content">
         <header class="card-header">
@@ -8,14 +8,14 @@
                     {{ tech_bite.title }}
                 </a>
             </h3>
-            
+
             <div class="card-meta">
                 {% if site.sections.tech_bite.show_dates and tech_bite.date %}
                     <time class="card-date" datetime="{{ tech_bite.date | date_to_xmlschema }}">
                         {{ tech_bite.date | date: "%b %d, %Y" }}
                     </time>
                 {% endif %}
-                
+
                 {% if site.sections.tech_bite.show_categories and tech_bite.categories %}
                     <div class="card-categories">
                         {% for category in tech_bite.categories limit: 2 %}
@@ -28,22 +28,22 @@
                 {% endif %}
             </div>
         </header>
-        
+
         <div class="card-body">
             {% if tech_bite.excerpt %}
                 <p class="card-excerpt">{{ tech_bite.excerpt | strip_html | truncate: 150 }}</p>
             {% elsif tech_bite.description %}
                 <p class="card-excerpt">{{ tech_bite.description | strip_html | truncate: 150 }}</p>
             {% endif %}
-            
+
         </div>
-        
+
         <footer class="card-footer">
             <a href="{{ tech_bite.url | relative_url }}" class="read-more">
                 {{ site.content.pages.tech_bites.card.read_more_text | default: "Read More" }}
                 <span class="read-more-icon">→</span>
             </a>
-            
+
             {% if tech_bite.reading_time %}
                 <span class="reading-time">{{ tech_bite.reading_time }} {{ site.content.pages.tech_bites.card.min_read_text | default: "min read" }}</span>
             {% endif %}

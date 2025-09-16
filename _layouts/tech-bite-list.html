@@ -8,7 +8,7 @@ layout: default
             <h1 class="page-title">{{ site.content.pages.tech_bites.title | default: "Tech Bites" }}</h1>
             <p class="page-description">{{ site.content.pages.tech_bites.description | default: "Daily tech insights and discoveries" }}</p>
         </header>
-        
+
         <!-- Tech Bites Grid -->
         <div class="tech-bites-grid">
             {% assign sorted_tech_bites = site.tech-bites | sort: 'date' | reverse %}
@@ -16,18 +16,18 @@ layout: default
                 {% include tech-bite-card.html tech_bite=tech_bite %}
             {% endfor %}
         </div>
-        
+
         <!-- Pagination -->
         {% if site.sections.tech_bite.pagination %}
             {% assign pagination_size = site.sections.tech_bite.pagination | default: 10 %}
             {% assign total_pages = sorted_tech_bites.size | divided_by: pagination_size | plus: 1 %}
-            
+
             {% if total_pages > 1 %}
                 <nav class="pagination">
                     <div class="pagination-info">
                         {{ site.content.ui.pagination.showing_text | default: "Showing" }} {{ pagination_size }} {{ site.content.ui.pagination.of_text | default: "of" }} {{ sorted_tech_bites.size }} {{ site.content.ui.pagination.tech_bites_text | default: "tech bites" }}
                     </div>
-                    
+
                     <div class="pagination-links">
                         <button class="pagination-btn" id="prev-page" disabled>{{ site.content.ui.pagination.previous_text | default: "Previous" }}</button>
                         <span class="pagination-current">
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const techBites = document.querySelectorAll('.tech-bite-card');
     const itemsPerPage = {{ site.sections.tech_bite.pagination | default: 10 }};
     let currentPage = 1;
-    
+
     // Pagination functionality
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
     const currentPageSpan = document.getElementById('current-page');
-    
+
     if (prevBtn) {
         prevBtn.addEventListener('click', function() {
             if (currentPage > 1) {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
             const totalPages = Math.ceil(techBites.length / itemsPerPage);
@@ -71,22 +71,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     function updateDisplay() {
         const totalPages = Math.ceil(techBites.length / itemsPerPage);
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        
+
         // Hide all items
         techBites.forEach(card => {
             card.style.display = 'none';
         });
-        
+
         // Show items for current page
         Array.from(techBites).slice(startIndex, endIndex).forEach(card => {
             card.style.display = 'block';
         });
-        
+
         // Update pagination controls
         if (prevBtn) {
             prevBtn.disabled = currentPage === 1;
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentPageSpan.textContent = currentPage;
         }
     }
-    
+
     // Initial display
     updateDisplay();
 });

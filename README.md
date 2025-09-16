@@ -13,7 +13,7 @@ A clean, minimal Jekyll template for personal websites with tech content focus.
 ## Quick Start
 
 ### Prerequisites
-- Ruby 2.7+ 
+- Ruby 2.7+
 - Bundler
 
 ### Installation
@@ -32,7 +32,7 @@ A clean, minimal Jekyll template for personal websites with tech content focus.
    description: "Your website description"
    url: "https://yoursite.com"
    author: "Your Name"
-   
+
    personal:
      name: "Your Display Name"
      bio: "Your bio"

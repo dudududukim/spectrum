@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<div class="films-page">
+    <div class="container">
+        <header class="page-header">
+            <h1 class="page-title">{{ site.content.pages.films.title | default: "Films" }}</h1>
+            <p class="page-description">{{ site.content.pages.films.description | default: "Photography collection showcasing moments captured through the lens" }}</p>
+        </header>
+
+        <!-- Films Grid -->
+        <div class="films-grid">
+            {% assign films_dir = site.static_files | where: "path", "/assets/images/films/" %}
+            {% assign image_extensions = "jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP" | split: "," %}
+
+            {% for file in site.static_files %}
+                {% if file.path contains '/assets/images/films/' %}
+                    {% assign file_ext = file.extname | remove: '.' %}
+                    {% if image_extensions contains file_ext %}
+                        {% include photo-card.html image=file %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

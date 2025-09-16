@@ -54,30 +54,6 @@ social:
       label: "Instagram"
       icon: "fa-brands fa-instagram"
 
-# Theme Configuration
-theme:
-  colors:
-    primary: "#3498db"
-    secondary: "#2c3e50"
-    accent: "#e74c3c"
-    background: "#ffffff"
-    text: "#2c3e50"
-    light_text: "#7f8c8d"
-  
-  typography:
-    font_family: "Lato"
-  
-  layout:
-    max_width: "1125px"
-    content_width: "875px"
-  
-  animations:
-    enabled: true
-    duration: "0.3s"
-  
-  dark_mode:
-    enabled: true
-
 # Accessibility Configuration
 accessibility:
   skip_links: true
@@ -104,15 +80,13 @@ content:
   pages:
     about:
       title: "About"
-      welcome_message: "Welcome to my personal corner of the web!"
-      intro_text: "I'm passionate about technology, design, and continuous learning."
-      main_description: "I believe in the power of sharing knowledge and documenting discoveries. This site serves as a platform where I document my daily tech insights, share learnings from my development journey, and explore the ever-evolving world of technology."
+      welcome_message: "Welcome 🤗"
+      intro_text: "I'm Duhyeon Kim, an Electrical and Electronic Engineering major from Korea University. I have a broad curiosity about all things AI, and I enjoy diving deep into areas where I can focus and grow."
+      main_description: "My hope is that, even if just a little, the path I take will leave something valuable for humanity. My dreams are big, but I'm still figuring out how to make them a reality."
       sections:
-        - title: "What You'll Find Here"
-          content: "**Tech Bites** - Daily insights and discoveries from the world of web development, programming, and technology. These bite-sized posts cover everything from JavaScript tips to performance optimization techniques, accessibility best practices, and modern development workflows."
-        - title: "Beyond the Code"
-          content: "When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or simply enjoying a good cup of coffee while reading about the latest developments in web standards and programming languages."
-      closing_text: "Feel free to explore the site, and don't hesitate to reach out if you'd like to connect or collaborate on something interesting!"
+        - title: "Areas of Study & Work"
+          content: "Here are a few topics I've studied or worked on:\n\n- Computer vision / NLP\n- FPGA & VLSI\n- Computer architecture"
+      closing_text: "🌈 Wishing everyone a wonderful day!"
     
     tech_bites:
       title: "Tech Bites"
@@ -140,6 +114,10 @@ content:
       navigation:
         previous_text: "← Previous"
         next_text: "Next →"
+    
+    films:
+      title: "Films"
+      description: "Photography collection showcasing moments captured through the lens"
   
   ui:
     buttons:
@@ -161,6 +139,127 @@ content:
         suggestion: "You might want to go back to the homepage or check out our tech bites."
         back_home_text: "Back to Home"
 
+# Theme Configuration (consolidated from theme.yml)
+theme:
+  colors:
+    primary: "#3498db"
+    secondary: "#2c3e50"
+    accent: "#e74c3c"
+    background: "#ffffff"
+    text: "#2c3e50"
+    light_text: "#7f8c8d"
+    success: "#27ae60"
+    warning: "#f39c12"
+    error: "#e74c3c"
+    info: "#3498db"
+  
+  typography:
+    font_family: "Lato"
+    font_weights:
+      light: 300
+      normal: 400
+      medium: 500
+      bold: 700
+    font_sizes:
+      xs: "0.75rem"
+      sm: "0.875rem"
+      base: "1rem"
+      lg: "1.125rem"
+      xl: "1.25rem"
+      "2xl": "1.5rem"
+      "3xl": "1.875rem"
+      "4xl": "2.25rem"
+  
+  layout:
+    max_width: "1125px"
+    content_width: "875px"
+    breakpoints:
+      mobile: "768px"
+      tablet: "1024px"
+      desktop: "1200px"
+  
+  animations:
+    enabled: true
+    duration: "0.3s"
+    easing: "ease"
+    reduced_motion: false
+  
+  dark_mode:
+    enabled: true
+    auto_detect: true
+    toggle_enabled: true
+  
+  components:
+    cards:
+      border_radius: "0.75rem"
+      shadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+      hover_shadow: "0 8px 25px rgba(0, 0, 0, 0.15)"
+    buttons:
+      border_radius: "0.5rem"
+      padding: "0.75rem 1.5rem"
+      transition: "all 0.3s ease"
+    navigation:
+      height: "4rem"
+      background: "var(--bg-color)"
+      border_bottom: "1px solid var(--border-light)"
+    footer:
+      padding: "0.75rem 0"
+      background: "var(--bg-color)"
+      border_top: "1px solid var(--border-light)"
+  
+  accessibility:
+    focus_ring: "2px solid var(--primary-color)"
+    focus_offset: "2px"
+    high_contrast: false
+    reduced_motion: false
+    skip_links: true
+
+# Homepage Section Controls
+homepage_sections:
+  tech_bites_preview:
+    enabled: true
+    show_count: 5
+    show_read_more_button: true
+    custom_title: "Recent Tech Bites"  # Optional override
+  
+  films_preview:
+    enabled: true
+    show_count: 6
+    show_view_all_button: true
+    custom_title: "Recent Films"    # Optional override
+    animation_duration: 60
+  
+  # Future extensibility
+  papers_preview:
+    enabled: false
+    show_count: 3
+  
+  gallery_preview:
+    enabled: false
+    show_count: 8
+
+# Design Customization (maintain current defaults)
+design_options:
+  tech_bite_cards:
+    compact_mode: true          # Current ultra-compact design
+    show_excerpts: true
+    show_reading_time: true
+    max_excerpt_length: 150
+  
+  gallery_track:
+    auto_scroll: true
+    scroll_speed: 60           # Current animation duration
+    show_overlay_on_hover: true
+    
+  navigation:
+    fixed_position: true
+    show_breadcrumbs: true
+    social_position: "right"   # Current position
+  
+  footer:
+    show_theme_credit: true    # Current setting
+    compact_layout: true       # Current design
+
 # Section Configuration
 sections:
   tech_bite:
@@ -169,6 +268,11 @@ sections:
     show_categories: true
     show_dates: true
     pagination: 10
+  
+  gallery_track:
+    enabled: true
+    image_count: 6
+    animation_duration: 60
 
 # Collections
 collections:

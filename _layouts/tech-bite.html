@@ -6,14 +6,14 @@ layout: default
     <div class="container">
         <header class="page-header">
             <h1 class="page-title">{{ page.title }}</h1>
-            
+
             <div class="page-meta">
                 {% if page.date %}
                     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
                         {{ page.date | date: "%B %d, %Y" }}
                     </time>
                 {% endif %}
-                
+
                 {% if page.categories %}
                     <div class="post-categories">
                         {% for category in page.categories %}
@@ -23,11 +23,11 @@ layout: default
                 {% endif %}
             </div>
         </header>
-        
+
         <article class="tech-bite-content">
             {{ content }}
         </article>
-        
+
         <!-- Navigation to other tech bites -->
         <nav class="post-navigation">
             {% assign tech_bites = site.tech-bites | sort: 'date' %}
@@ -37,7 +37,7 @@ layout: default
                     {% break %}
                 {% endif %}
             {% endfor %}
-            
+
             {% if current_index > 0 %}
                 {% assign prev_index = current_index | minus: 1 %}
                 {% assign prev_post = tech_bites[prev_index] %}
@@ -46,7 +46,7 @@ layout: default
                     <span class="nav-title">{{ prev_post.title }}</span>
                 </a>
             {% endif %}
-            
+
             {% assign next_index = current_index | plus: 1 %}
             {% if next_index < tech_bites.size %}
                 {% assign next_post = tech_bites[next_index] %}

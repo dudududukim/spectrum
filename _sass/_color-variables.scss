@@ -8,19 +8,19 @@
   --primary-hover: #2980b9;
   --primary-light: #85c1e9;
   --primary-dark: #1f618d;
-  
+
   // Secondary colors
   --secondary-color: #2c3e50;
   --secondary-hover: #1a252f;
   --secondary-light: #566573;
   --secondary-dark: #1b2631;
-  
+
   // Accent colors
   --accent-color: #e74c3c;
   --accent-hover: #c0392b;
   --accent-light: #f1948a;
   --accent-dark: #a93226;
-  
+
   // Neutral colors
   --white: #ffffff;
   --black: #000000;
@@ -34,44 +34,44 @@
   --gray-700: #343a40;
   --gray-800: #212529;
   --gray-900: #121416;
-  
+
   // Semantic colors
   --success-color: #27ae60;
   --warning-color: #f39c12;
   --error-color: #e74c3c;
   --info-color: #3498db;
-  
+
   // Background colors
   --bg-color: #ffffff;
   --bg-secondary: #f8f9fa;
   --bg-tertiary: #e9ecef;
-  
+
   // Text colors
   --text-color: #2c3e50;
   --text-secondary: #6c757d;
   --text-muted: #adb5bd;
   --text-light: #ffffff;
-  
+
   // Border colors
   --border-color: #dee2e6;
   --border-light: #e9ecef;
   --border-dark: #adb5bd;
-  
+
   // Shadow colors
   --shadow-light: rgba(0, 0, 0, 0.1);
   --shadow-medium: rgba(0, 0, 0, 0.15);
   --shadow-dark: rgba(0, 0, 0, 0.25);
-  
+
   // Gradient colors
   --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
   --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
-  
+
   // Animation variables
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  
+
   // Spacing variables (8px base scale)
   --spacing-xs: 0.25rem;   // 4px
   --spacing-sm: 0.5rem;    // 8px
@@ -81,19 +81,24 @@
   --spacing-2xl: 3rem;     // 48px
   --spacing-3xl: 4rem;     // 64px
   --spacing-4xl: 6rem;     // 96px
-  
+
   // Border radius
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-full: 9999px;
-  
+
   // Layout variables
   --content-max-width: 875px;
   --site-max-width: 1125px;
   --max-width: 1125px;
-  
+
+  // Navigation height variables
+  --nav-height: 6rem;
+  --nav-height-mobile: 5.5rem;
+  --nav-height-tablet: 5.75rem;
+
   // Z-index scale
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -110,17 +115,17 @@
   --bg-color: #1a1a1a;
   --bg-secondary: #2d2d2d;
   --bg-tertiary: #404040;
-  
+
   // Text colors
   --text-color: #e9ecef;
   --text-secondary: #adb5bd;
   --text-muted: #6c757d;
-  
+
   // Border colors
   --border-color: #404040;
   --border-light: #2d2d2d;
   --border-dark: #6c757d;
-  
+
   // Shadow colors (lighter for dark mode)
   --shadow-light: rgba(255, 255, 255, 0.1);
   --shadow-medium: rgba(255, 255, 255, 0.15);
