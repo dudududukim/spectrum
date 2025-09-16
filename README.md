@@ -1,9 +1,19 @@
-# Spectrum - Minimal Jekyll Theme for Personal Websites & Blogs
+# Spectrum - Minimal Jekyll Theme
+
 
 [![Jekyll](https://img.shields.io/badge/Jekyll-%3E%3D%204.3-blue.svg)](https://jekyllrb.com/)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.2-red.svg)](https://www.ruby-lang.org/)
 [![GitHub stars](https://img.shields.io/github/stars/dudududukim/spectrum.svg?style=social&label=Star)](https://github.com/dudududukim/spectrum)
+
+<div align="center">
+
+### 🚀 **LIVE DEMO**
+**[dudududukim.github.io/spectrum/](https://dudududukim.github.io/spectrum/)**
+
+_👆 Click here to see the live demo!_
+
+</div>
 
 A clean and minimal **Jekyll theme** designed for personal websites and blogs with a focus on simplicity and customizability. Perfect for professional researchers, undergraduates, and creators from diverse backgrounds who want an easy-to-use yet flexible platform.
 
@@ -21,25 +31,6 @@ A minimal, responsive Jekyll theme with excellent typography and dynamic color t
 - **Light & Dark Theme** support with automatic switching
 - **Minimal & Clean** design focused on readability
 - **GitHub Actions** deployment ready
-
-## 🎨 Live Preview
-
-### Homepage Overview
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Homepage Light](images/white_main.png) | ![Homepage Dark](images/dark_main.png) |
-
-### Content Sections
-| Tech Bites | Films Gallery |
-|------------|---------------|
-| ![Tech Bites Light](images/white_tech.png) | ![Films Light](images/white_films.png) |
-| ![Tech Bites Dark](images/dark_tech.png) | ![Films Dark](images/dark_films.png) |
-
-### Individual Content Pages
-| Markdown Content | Photo detail page |
-|------------------|-------------------|
-| ![Tech Markdown Light](images/white_tech_md.png) | ![Films Photo Light](images/white_films_photo.png) |
-| ![Tech Markdown Dark](images/dark_tech_md.png) | ![Films Photo Dark](images/dark_films_photo.png) |
 
 
 ## Quick Start
@@ -99,6 +90,27 @@ This **Jekyll theme** is ready for immediate deployment with GitHub Actions.
 - **Netlify**: Auto-detects Jekyll and builds automatically
 - **Vercel**: Compatible with standard Jekyll builds
 - **Self-hosted**: Use `bundle exec jekyll build` for static files
+
+## 🎨 Live Preview
+
+### Homepage Overview
+| Light Theme | Dark Theme |
+|-------------|------------|
+| ![Homepage Light](images/white_main.png) | ![Homepage Dark](images/dark_main.png) |
+
+### Content Sections
+| Tech Bites | Films Gallery |
+|------------|---------------|
+| ![Tech Bites Light](images/white_tech.png) | ![Films Light](images/white_films.png) |
+| ![Tech Bites Dark](images/dark_tech.png) | ![Films Dark](images/dark_films.png) |
+
+### Individual Content Pages
+| Markdown Content | Photo detail page |
+|------------------|-------------------|
+| ![Tech Markdown Light](images/white_tech_md.png) | ![Films Photo Light](images/white_films_photo.png) |
+| ![Tech Markdown Dark](images/dark_tech_md.png) | ![Films Photo Dark](images/dark_films_photo.png) |
+
+
 
 ## Project Structure
 
