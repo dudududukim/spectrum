@@ -1,12 +1,14 @@
 /**
- * Theme Manager
- * Handles theme switching, color customization, and user preferences
+ * Enhanced Theme Manager
+ * Handles theme switching, color customization, system preference detection, and user preferences
  */
 
 class ThemeManager {
     constructor() {
         this.storageKey = 'jekyll-terminal-theme';
         this.colorPickerKey = 'jekyll-terminal-colors';
+        this.themePreferenceKey = 'jekyll-terminal-theme-preference';
+        
         this.defaultTheme = {
             primary: '#3498db',
             secondary: '#2c3e50',
@@ -16,18 +18,51 @@ class ThemeManager {
             lightText: '#7f8c8d',
             darkMode: false
         };
+
+        // Theme preference states
+        this.THEME_STATES = {
+            SYSTEM: 'system',
+            LIGHT: 'light',
+            DARK: 'dark'
+        };
+        
+        this.currentThemePreference = this.THEME_STATES.SYSTEM;
+        this.isSystemDark = false;
         
         this.init();
     }
     
     init() {
+        // Disable transitions during initial load
+        document.documentElement.classList.add('no-transitions');
+        
+        this.detectSystemTheme();
         this.loadTheme();
         this.setupEventListeners();
         this.applyTheme();
+        
+        // Re-enable transitions after a short delay
+        setTimeout(() => {
+            document.documentElement.classList.remove('no-transitions');
+        }, 100);
+    }
+    
+    detectSystemTheme() {
+        if (window.matchMedia) {
+            this.isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
     }
     
     setupEventListeners() {
-        // Dark mode toggle
+        // Theme toggle button
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                this.cycleTheme();
+            });
+        }
+        
+        // Legacy dark mode toggle support
         const darkModeToggle = document.querySelector('.dark-mode-toggle');
         if (darkModeToggle) {
             darkModeToggle.addEventListener('click', () => {
@@ -35,13 +70,13 @@ class ThemeManager {
             });
         }
         
-        
         // Listen for system theme changes
         if (window.matchMedia) {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             mediaQuery.addEventListener('change', (e) => {
-                if (!this.hasCustomTheme()) {
-                    this.setSystemTheme(e.matches);
+                this.isSystemDark = e.matches;
+                if (this.currentThemePreference === this.THEME_STATES.SYSTEM) {
+                    this.applyTheme();
                 }
             });
         }
@@ -50,6 +85,12 @@ class ThemeManager {
     loadTheme() {
         const savedTheme = localStorage.getItem(this.storageKey);
         const savedColors = localStorage.getItem(this.colorPickerKey);
+        const savedPreference = localStorage.getItem(this.themePreferenceKey);
+        
+        // Load theme preference
+        if (savedPreference && Object.values(this.THEME_STATES).includes(savedPreference)) {
+            this.currentThemePreference = savedPreference;
+        }
         
         if (savedTheme) {
             this.currentTheme = { ...this.defaultTheme, ...JSON.parse(savedTheme) };
@@ -62,11 +103,8 @@ class ThemeManager {
             this.currentTheme = { ...this.currentTheme, ...colors };
         }
         
-        // Check for system preference if no custom theme
-        if (!this.hasCustomTheme() && window.matchMedia) {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.currentTheme.darkMode = prefersDark;
-        }
+        // Determine dark mode based on preference
+        this.currentTheme.darkMode = this.shouldUseDarkMode();
     }
     
     saveTheme() {
@@ -77,12 +115,49 @@ class ThemeManager {
         localStorage.setItem(this.colorPickerKey, JSON.stringify(colors));
     }
     
+    saveThemePreference() {
+        localStorage.setItem(this.themePreferenceKey, this.currentThemePreference);
+    }
+    
     hasCustomTheme() {
         return localStorage.getItem(this.storageKey) !== null;
     }
     
+    shouldUseDarkMode() {
+        switch (this.currentThemePreference) {
+            case this.THEME_STATES.DARK:
+                return true;
+            case this.THEME_STATES.LIGHT:
+                return false;
+            case this.THEME_STATES.SYSTEM:
+            default:
+                return this.isSystemDark;
+        }
+    }
+    
+    cycleTheme() {
+        // Cycle through: system -> light -> dark -> system
+        switch (this.currentThemePreference) {
+            case this.THEME_STATES.SYSTEM:
+                this.currentThemePreference = this.THEME_STATES.LIGHT;
+                break;
+            case this.THEME_STATES.LIGHT:
+                this.currentThemePreference = this.THEME_STATES.DARK;
+                break;
+            case this.THEME_STATES.DARK:
+                this.currentThemePreference = this.THEME_STATES.SYSTEM;
+                break;
+        }
+        
+        this.currentTheme.darkMode = this.shouldUseDarkMode();
+        this.saveThemePreference();
+        this.saveTheme();
+        this.applyTheme();
+    }
+    
     applyTheme() {
         const root = document.documentElement;
+        const body = document.body;
         
         // Apply color variables
         root.style.setProperty('--primary-color', this.currentTheme.primary);
@@ -92,11 +167,14 @@ class ThemeManager {
         root.style.setProperty('--text-color', this.currentTheme.text);
         root.style.setProperty('--light-text-color', this.currentTheme.lightText);
         
-        // Apply dark mode
+        // Remove all theme classes first
+        body.classList.remove('dark-mode', 'light-mode');
+        
+        // Apply appropriate theme class
         if (this.currentTheme.darkMode) {
-            document.body.classList.add('dark-mode');
+            body.classList.add('dark-mode');
         } else {
-            document.body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
         }
         
         // Update theme color meta tag
@@ -105,8 +183,16 @@ class ThemeManager {
             themeColorMeta.setAttribute('content', this.currentTheme.primary);
         }
         
-        // Update dark mode toggle state
-        this.updateDarkModeToggle();
+        // Update theme toggle state
+        this.updateThemeToggle();
+        
+        // Dispatch custom event for other components
+        window.dispatchEvent(new CustomEvent('themeChanged', {
+            detail: {
+                isDark: this.currentTheme.darkMode,
+                preference: this.currentThemePreference
+            }
+        }));
     }
     
     updateTheme(newColors) {
@@ -128,7 +214,16 @@ class ThemeManager {
         this.applyTheme();
     }
     
-    updateDarkModeToggle() {
+    updateThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            // Update aria-label based on current state
+            const nextState = this.getNextThemeState();
+            themeToggle.setAttribute('aria-label', `Switch to ${nextState} mode`);
+            themeToggle.setAttribute('title', `Switch to ${nextState} mode`);
+        }
+        
+        // Legacy dark mode toggle support
         const darkModeToggle = document.querySelector('.dark-mode-toggle');
         if (darkModeToggle) {
             const sunIcon = darkModeToggle.querySelector('.icon-sun');
@@ -144,10 +239,25 @@ class ThemeManager {
         }
     }
     
+    getNextThemeState() {
+        switch (this.currentThemePreference) {
+            case this.THEME_STATES.SYSTEM:
+                return 'light';
+            case this.THEME_STATES.LIGHT:
+                return 'dark';
+            case this.THEME_STATES.DARK:
+                return 'system';
+            default:
+                return 'light';
+        }
+    }
+    
     
     resetTheme() {
         this.currentTheme = { ...this.defaultTheme };
+        this.currentThemePreference = this.THEME_STATES.SYSTEM;
         this.saveTheme();
+        this.saveThemePreference();
         localStorage.removeItem(this.colorPickerKey);
         this.applyTheme();
     }
@@ -157,12 +267,34 @@ class ThemeManager {
         return { ...this.currentTheme };
     }
     
+    getCurrentThemePreference() {
+        return this.currentThemePreference;
+    }
+    
+    setThemePreference(preference) {
+        if (Object.values(this.THEME_STATES).includes(preference)) {
+            this.currentThemePreference = preference;
+            this.currentTheme.darkMode = this.shouldUseDarkMode();
+            this.saveThemePreference();
+            this.saveTheme();
+            this.applyTheme();
+        }
+    }
+    
     setPrimaryColor(color) {
         this.updateTheme({ primary: color });
     }
     
     setDarkMode(enabled) {
         this.updateTheme({ darkMode: enabled });
+    }
+    
+    isDarkMode() {
+        return this.currentTheme.darkMode;
+    }
+    
+    isSystemTheme() {
+        return this.currentThemePreference === this.THEME_STATES.SYSTEM;
     }
     
     // Animation utilities

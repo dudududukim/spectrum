@@ -24,6 +24,21 @@
       {% endunless %}
     </div>
 
+    <!-- Theme Toggle Switch -->
+    <button 
+      class="theme-toggle" 
+      id="theme-toggle"
+      aria-label="Toggle dark mode"
+      title="Toggle theme"
+    >
+      <div class="theme-toggle-track">
+        <div class="theme-toggle-slider">
+          <i class="fas fa-sun theme-toggle-icon theme-toggle-sun"></i>
+          <i class="fas fa-moon theme-toggle-icon theme-toggle-moon"></i>
+        </div>
+      </div>
+    </button>
+
     {% if site.navigation.show_social and site.social.enabled %}
     <div class="nav-social">
       {% for platform in site.social.platforms %}
