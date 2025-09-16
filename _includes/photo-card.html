@@ -24,13 +24,9 @@
             />
             <div class="photo-overlay">
                 <div class="photo-info">
-                    <h3 class="photo-title">{{ image_name }}</h3>
                     {% if include.film %}
                         {% if film.location %}
                             <span class="photo-meta">{{ film.location }}</span>
-                        {% endif %}
-                        {% if film.camera %}
-                            <span class="photo-category">{{ film.camera }}</span>
                         {% endif %}
                     {% else %}
                         <span class="photo-meta">{{ image.extname | remove: '.' | upcase }}</span>

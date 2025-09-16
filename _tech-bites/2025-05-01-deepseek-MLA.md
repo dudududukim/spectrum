@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning in DeepSeek MLA Algorithm Design"
+title: "DeepSeek MLA Algorithm Design"
 date: 2025-09-16
 categories: ["DeepSeek", "Machine Learning", "Attention Design"]
 tags: ["machine-learning", "deepseek", "mla-algorithm", "design-automation"]

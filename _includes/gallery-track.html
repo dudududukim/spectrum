@@ -57,37 +57,3 @@
     </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const galleryTrack = document.getElementById('gallery-track');
-    if (!galleryTrack) return;
-
-    let isPaused = false;
-
-    // Pause animation on hover
-    galleryTrack.addEventListener('mouseenter', function() {
-        isPaused = true;
-        galleryTrack.style.animationPlayState = 'paused';
-    });
-
-    // Resume animation on mouse leave
-    galleryTrack.addEventListener('mouseleave', function() {
-        isPaused = false;
-        galleryTrack.style.animationPlayState = 'running';
-    });
-
-    // Pause animation when any gallery item is hovered
-    const galleryItems = galleryTrack.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            isPaused = true;
-            galleryTrack.style.animationPlayState = 'paused';
-        });
-
-        item.addEventListener('mouseleave', function() {
-            isPaused = false;
-            galleryTrack.style.animationPlayState = 'running';
-        });
-    });
-});
-</script>

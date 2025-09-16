@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning in Google Ironwood TPU Design"
+title: "Google Ironwood TPU Design"
 date: 2025-09-16
 categories: ["Google", "Machine Learning", "TPU Design"]
 tags: ["machine-learning", "google", "ironwood-tpu", "design-automation"]

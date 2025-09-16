@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning in NVIDIA Rubin CPX Design"
+title: "NVIDIA Rubin CPX Design"
 date: 2025-09-16
 categories: ["NVIDIA", "Machine Learning", "GPU Design"]
 tags: ["machine-learning", "nvidia", "rubin-cpx", "design-automation"]
