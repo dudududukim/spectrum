@@ -1,10 +1,12 @@
 # Spectrum - Minimal Jekyll Theme
 
 
-[![Jekyll](https://img.shields.io/badge/Jekyll-%3E%3D%204.3-blue.svg)](https://jekyllrb.com/)
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.2-red.svg)](https://www.ruby-lang.org/)
-[![GitHub stars](https://img.shields.io/github/stars/dudududukim/spectrum.svg?style=social&label=Star)](https://github.com/dudududukim/spectrum)
+[![Jekyll](https://img.shields.io/badge/Jekyll-%3E%3D%204.3-blue.svg?style=flat&height=20)](https://jekyllrb.com/)
+[![Ruby](https://img.shields.io/badge/Ruby-%3E%3D%203.2-red.svg?style=flat&height=20)](https://www.ruby-lang.org/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat&height=20)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/dudududukim/spectrum.svg?style=flat&height=20&label=Star)](https://github.com/dudududukim/spectrum)
+[![Featured on Jekyll Themes](https://img.shields.io/badge/featured%20on-JT-red.svg?style=flat&height=20)](https://jekyll-themes.com/dudududukim/spectrum)
+
 
 <div align="center">
 
