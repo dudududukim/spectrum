@@ -102,7 +102,8 @@
         border-color: var(--border-light);
       }
 
-      &.active {
+      // All button (default)
+      &.active[data-category="all"] {
         background-color: var(--primary-color);
         color: white;
         border-color: var(--primary-color);
@@ -113,9 +114,134 @@
         }
       }
 
+      // Paper category button
+      &[data-category="paper"] {
+        &:hover {
+          background-color: #e3f2fd;
+          color: #1565c0;
+          border-color: #1565c0;
+        }
+
+        &.active {
+          background-color: #e3f2fd;
+          color: #1565c0;
+          border-color: #1565c0;
+
+          &:hover {
+            background-color: #bbdefb;
+            border-color: #0d47a1;
+          }
+        }
+      }
+
+      // Tech-bite category button
+      &[data-category="tech-bite"] {
+        &:hover {
+          background-color: #f3e5f5;
+          color: #7b1fa2;
+          border-color: #7b1fa2;
+        }
+
+        &.active {
+          background-color: #f3e5f5;
+          color: #7b1fa2;
+          border-color: #7b1fa2;
+
+          &:hover {
+            background-color: #e1bee7;
+            border-color: #4a148c;
+          }
+        }
+      }
+
+      // Life category button
+      &[data-category="life"] {
+        &:hover {
+          background-color: #e8f5e8;
+          color: #2e7d32;
+          border-color: #2e7d32;
+        }
+
+        &.active {
+          background-color: #e8f5e8;
+          color: #2e7d32;
+          border-color: #2e7d32;
+
+          &:hover {
+            background-color: #c8e6c9;
+            border-color: #1b5e20;
+          }
+        }
+      }
+
       &:focus {
         outline: 2px solid var(--primary-color);
         outline-offset: 2px;
+      }
+    }
+
+    // Dark mode styles for filter buttons
+    html[data-theme="dark"] & {
+      .filter-btn {
+        // Paper category button (dark mode)
+        &[data-category="paper"] {
+          &:hover {
+            background-color: #1a237e;
+            color: #90caf9;
+            border-color: #90caf9;
+          }
+
+          &.active {
+            background-color: #1a237e;
+            color: #90caf9;
+            border-color: #90caf9;
+
+            &:hover {
+              background-color: #283593;
+              border-color: #bbdefb;
+            }
+          }
+        }
+
+        // Tech-bite category button (dark mode)
+        &[data-category="tech-bite"] {
+          &:hover {
+            background-color: #4a148c;
+            color: #ce93d8;
+            border-color: #ce93d8;
+          }
+
+          &.active {
+            background-color: #4a148c;
+            color: #ce93d8;
+            border-color: #ce93d8;
+
+            &:hover {
+              background-color: #6a1b9a;
+              border-color: #e1bee7;
+            }
+          }
+        }
+
+        // Life category button (dark mode)
+        &[data-category="life"] {
+          &:hover {
+            background-color: #1b5e20;
+            color: #a5d6a7;
+            border-color: #a5d6a7;
+          }
+
+          &.active {
+            background-color: #1b5e20;
+            color: #a5d6a7;
+            border-color: #a5d6a7;
+
+            &:hover {
+              background-color: #2e7d32;
+              border-color: #c8e6c9;
+            }
+          }
+        }
       }
     }
   }
@@ -359,6 +485,52 @@
     position: relative;
   }
 
+  // Mobile Menu Toggle Button
+  .mobile-menu-toggle {
+    display: none; // Hidden by default, shown on mobile
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    position: relative;
+    z-index: 1001;
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    .hamburger-line {
+      width: 18px;
+      height: 2px;
+      background-color: var(--text-color);
+      margin: 1.5px 0;
+      transition: all var(--transition-fast);
+      border-radius: 1px;
+    }
+
+    // Hamburger animation when menu is open
+    &.active {
+      .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(3px, 3px);
+      }
+      .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(3px, -3px);
+      }
+    }
+  }
+
   .nav-path {
     display: flex;
     align-items: center;
@@ -418,8 +590,8 @@
     }
   }
 
-  // Theme Toggle Switch - Centered with mobile optimizations
-  .theme-toggle {
+  // Theme Toggle Switch - Desktop version (centered)
+  .theme-toggle-desktop {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -567,6 +739,234 @@
       }
     }
   }
+
+  // Mobile Menu Overlay
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-color);
+    border-left: 1px solid var(--border-light);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    overflow-y: auto;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
+  .mobile-menu-content {
+    padding: 6rem 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+  }
+
+  .mobile-menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-menu-theme-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .mobile-menu-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  // Mobile Theme Toggle
+  .theme-toggle-mobile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle-track {
+      width: 2.5rem;
+      height: 1.25rem;
+      background-color: var(--bg-color);
+      border-radius: 1rem;
+      position: relative;
+      box-shadow: 
+        inset 2px 2px 4px var(--shadow-light),
+        inset -2px -2px 4px var(--overlay-light);
+    }
+
+    .theme-toggle-slider {
+      width: 1rem;
+      height: 1rem;
+      background-color: var(--bg-color);
+      border-radius: 50%;
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      box-shadow: 
+        2px 2px 4px var(--shadow-light),
+        -1px -1px 2px var(--overlay-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition-fast);
+    }
+
+    .theme-toggle-icon {
+      position: absolute;
+      font-size: 0.6rem;
+
+      &.theme-toggle-sun {
+        opacity: 1;
+        color: var(--text-secondary);
+      }
+
+      &.theme-toggle-moon {
+        opacity: 0;
+        color: var(--text-color);
+      }
+    }
+
+    .theme-toggle-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    // Dark mode state
+    html[data-theme="dark"] & {
+      .theme-toggle-track {
+        background-color: var(--bg-tertiary);
+      }
+
+      .theme-toggle-slider {
+        transform: translateX(1.25rem);
+      }
+
+      .theme-toggle-sun {
+        opacity: 0;
+      }
+
+      .theme-toggle-moon {
+        opacity: 1;
+      }
+    }
+
+    // Light mode state (when explicitly set)
+    html[data-theme="light"] & {
+      .theme-toggle-track {
+        background-color: var(--bg-color);
+      }
+
+      .theme-toggle-slider {
+        transform: translateX(0);
+      }
+
+      .theme-toggle-sun {
+        opacity: 1;
+      }
+
+      .theme-toggle-moon {
+        opacity: 0;
+      }
+    }
+  }
+
+  // Mobile Social Links
+  .nav-social-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+
+    .nav-social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      justify-content: flex-start;
+      width: 100%;
+      text-align: left;
+
+      &:hover {
+        background-color: transparent;
+        color: var(--primary-color);
+        transform: translateX(4px);
+      }
+
+      &:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: var(--radius-sm);
+      }
+
+      i {
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: left;
+        flex-shrink: 0;
+      }
+
+      .social-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: left;
+      }
+    }
+  }
 }
 
 // Site Footer
@@ -650,33 +1050,84 @@
       }
     }
 
-    .theme-toggle {
+    // Show mobile menu button, hide desktop elements
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .theme-toggle-desktop {
+      display: none;
+    }
+
+    .nav-social-desktop {
+      display: none;
+    }
+
+    // Mobile menu overlay adjustments
+    .mobile-menu {
+      width: 260px;
+    }
+
+    .mobile-menu-content {
+      padding: 5.5rem 1rem 0;
+    }
+
+    .mobile-menu-section {
+      gap: 0.75rem;
+    }
+
+    .mobile-menu-theme-section {
+      padding: 1rem;
+    }
+
+    .theme-toggle-mobile {
+      padding: 0.75rem 0;
+      gap: 0.75rem;
+
       .theme-toggle-track {
-        width: 2.5rem;
-        height: 1.25rem;
+        width: 2.25rem;
+        height: 1.125rem;
       }
 
       .theme-toggle-slider {
-        width: 1rem;
-        height: 1rem;
+        width: 0.875rem;
+        height: 0.875rem;
         top: 0.125rem;
       }
 
       .theme-toggle-icon {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+      }
+
+      .theme-toggle-label {
+        font-size: 0.85rem;
       }
 
       html[data-theme="dark"] & .theme-toggle-slider {
-        transform: translateX(1.25rem);
+        transform: translateX(1.125rem);
       }
     }
 
-    .nav-social {
-      gap: 0.75rem;
+    .nav-social-mobile {
+      gap: 0.375rem;
+      align-items: flex-start;
 
       .nav-social-link {
+        padding: 0.375rem 0;
+        gap: 0.625rem;
+        width: 100%;
+        text-align: left;
+
         i {
           font-size: 1rem;
+          width: 18px;
+          text-align: left;
+          flex-shrink: 0;
+        }
+
+        .social-label {
+          font-size: 0.85rem;
+          text-align: left;
         }
       }
     }
@@ -865,7 +1316,6 @@
 // ======================
 
 .film-detail-page {
-  padding-top: 2rem;
   padding-bottom: 0;
 }
 
@@ -883,7 +1333,7 @@
 .film-image-section {
   .film-image-container {
     position: relative;
-    border-radius: var(--radius-lg);
+    border-radius: 0; // 둥근 모서리 제거
     overflow: hidden;
 
     .film-image {
@@ -950,26 +1400,16 @@
   .film-main-content {
     margin-bottom: 2rem;
 
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--text-color);
-      margin-top: 0;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
+    // Typography styles inherited from _base.scss
+    // Only override specific styles if needed
     h1 {
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: 400; // 700 → 400으로 변경 (더 가벼운 폰트)
+      margin-top: 0;
 
       @media (max-width: 767px) {
         font-size: 1.5rem;
       }
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-top: 2rem;
     }
 
     h3 {
@@ -1123,7 +1563,6 @@
 // Responsive adjustments for film detail page
 @media (max-width: 767px) {
   .film-detail-page {
-    padding-top: 1.5rem;
     padding-bottom: 0;
   }
 
@@ -1147,22 +1586,37 @@
 
   .metadata-cards {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 0.5rem; // 카드 간 간격 줄임 (1rem → 0.5rem)
     margin: 1.5rem 0;
     border-radius: var(--radius-md);
+    display: flex; // Grid 대신 flex 사용으로 겹침 방지
+    flex-direction: column;
+    background-color: transparent; // 회색 배경 제거
+    border: none; // 테두리 제거
+    overflow: visible; // overflow 제거
   }
 
   .metadata-card {
-    padding: 1.25rem 1rem 1.25rem 1.5rem;
+    padding: 1.5rem 1rem; // 상하 패딩을 동일하게 맞춤
+    position: static; // position: relative 제거
+    width: 100%; // 전체 너비 보장
+    min-height: 4rem; // 최소 높이 설정으로 균형 맞춤
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // 내용을 세로 중앙 정렬
+    background-color: var(--bg-color); // 각 카드에 배경색 추가
+    border: 1px solid var(--border-color); // 각 카드에 테두리 추가
+    border-radius: var(--radius-md); // 각 카드에 둥근 모서리 추가
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 각 카드에 그림자 추가
 
     // Remove right border on mobile
     &:nth-child(odd) {
       border-right: none;
     }
 
-    // Add bottom border for all except last
+    // Remove bottom border for all except last
     &:not(:last-child) {
-      border-bottom: 1px solid var(--border-light);
+      border-bottom: none; // 하단 테두리 제거 (gap으로 간격 처리)
     }
 
     .metadata-title {

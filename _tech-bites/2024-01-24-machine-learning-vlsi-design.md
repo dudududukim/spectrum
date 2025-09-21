@@ -1,14 +1,20 @@
 ---
-title: "NVIDIA Rubin CPX Design"
+title: "NVIDIA Rubin CPX GPU Design Analysis"
 date: 2025-09-16
 category: "paper"
-categories: ["NVIDIA", "Machine Learning", "GPU Design"]
-tags: ["machine-learning", "nvidia", "rubin-cpx", "design-automation"]
-description: "How ML transforms NVIDIA Rubin CPX GPU design with optimization, verification, and automation for massive-context AI."
-reading_time: 4
+categories: ["Research", "Academic Paper", "GPU Architecture"]
+tags: ["research-paper", "nvidia", "gpu-design", "academic-analysis", "vlsi"]
+description: "Academic research analysis of NVIDIA Rubin CPX GPU design, examining ML-driven optimization techniques and architectural innovations for massive-context AI processing."
+reading_time: 6
 ---
 
-Machine learning enhances NVIDIA Rubin CPX GPU design, a monolithic die GPU optimized for million-token AI inference, enabling efficient optimization, verification, and automation
+## 📄 Research Paper Summary
+
+This academic analysis examines NVIDIA's Rubin CPX GPU architecture, a groundbreaking monolithic die design optimized for million-token AI inference. The research explores how machine learning techniques are revolutionizing traditional VLSI design methodologies.
+
+**Research Focus**: ML-driven GPU design optimization and verification
+**Methodology**: Comparative analysis of traditional vs. ML-enhanced EDA tools
+**Contribution**: Novel insights into automated chip design for AI workloads
 
 ## ML in Design Optimization
 

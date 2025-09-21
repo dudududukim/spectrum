@@ -1,14 +1,20 @@
 ---
-title: "Google Ironwood TPU Design"
+title: "Google Ironwood TPU Architecture Study"
 date: 2025-09-16
 category: "paper"
-categories: ["Google", "Machine Learning", "TPU Design"]
-tags: ["machine-learning", "google", "ironwood-tpu", "design-automation"]
-description: "How ML transforms Google Ironwood TPU design with optimization, verification, and automation for inference workloads."
-reading_time: 4
+categories: ["Research", "Academic Paper", "TPU Architecture"]
+tags: ["research-paper", "google", "tpu-design", "academic-study", "inference-optimization"]
+description: "Comprehensive academic study of Google's Ironwood TPU architecture, analyzing ML-driven design methodologies and performance optimization techniques for large-scale inference workloads."
+reading_time: 6
 ---
 
-Machine learning enhances Google Ironwood TPU design, a seventh-generation monolithic chip optimized for inference, enabling efficient optimization, verification, and automation.
+## 📄 Research Paper Summary
+
+This scholarly examination investigates Google's Ironwood TPU, a seventh-generation monolithic chip architecture designed for massive-scale inference workloads. The research analyzes how machine learning methodologies are transforming traditional chip design processes.
+
+**Research Focus**: TPU architecture optimization through ML-driven design automation
+**Methodology**: Performance analysis and comparative study of design methodologies
+**Contribution**: Insights into scalable inference chip design for cloud computing
 
 ## ML in Design Optimization
 

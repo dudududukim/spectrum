@@ -36,10 +36,10 @@
         </header>
 
         <div class="card-body">
-            {% if tech_bite.excerpt %}
-                <p class="card-excerpt">{{ tech_bite.excerpt | strip_html | truncate: 150 }}</p>
-            {% elsif tech_bite.description %}
+            {% if tech_bite.description %}
                 <p class="card-excerpt">{{ tech_bite.description | strip_html | truncate: 150 }}</p>
+            {% elsif tech_bite.excerpt %}
+                <p class="card-excerpt">{{ tech_bite.excerpt | strip_html | truncate: 150 }}</p>
             {% endif %}
 
         </div>
