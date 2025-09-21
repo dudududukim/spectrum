@@ -513,21 +513,7 @@
       height: 2px;
       background-color: var(--text-color);
       margin: 1.5px 0;
-      transition: all var(--transition-fast);
       border-radius: 1px;
-    }
-
-    // Hamburger animation when menu is open
-    &.active {
-      .hamburger-line:nth-child(1) {
-        transform: rotate(45deg) translate(3px, 3px);
-      }
-      .hamburger-line:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(3px, -3px);
-      }
     }
   }
 
@@ -751,7 +737,7 @@
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-normal);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
     &.active {
       opacity: 1;
@@ -769,8 +755,9 @@
     border-left: 1px solid var(--border-light);
     z-index: 1000;
     transform: translateX(100%);
-    transition: transform var(--transition-normal);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
 
     &.active {
       transform: translateX(0);
@@ -793,7 +780,7 @@
 
   .mobile-menu-theme-section {
     position: absolute;
-    bottom: 0;
+    bottom: 4rem;
     left: 0;
     right: 0;
     padding: 1.5rem;
@@ -1078,6 +1065,7 @@
 
     .mobile-menu-theme-section {
       padding: 1rem;
+      bottom: 3rem;
     }
 
     .theme-toggle-mobile {
