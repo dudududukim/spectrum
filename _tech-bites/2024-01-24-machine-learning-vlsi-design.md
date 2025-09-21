@@ -1,6 +1,7 @@
 ---
 title: "NVIDIA Rubin CPX Design"
 date: 2025-09-16
+category: "paper"
 categories: ["NVIDIA", "Machine Learning", "GPU Design"]
 tags: ["machine-learning", "nvidia", "rubin-cpx", "design-automation"]
 description: "How ML transforms NVIDIA Rubin CPX GPU design with optimization, verification, and automation for massive-context AI."

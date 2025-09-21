@@ -1,13 +1,19 @@
 {% assign tech_bite = include.tech_bite %}
 <article class="tech-bite-card"
-         data-date="{{ tech_bite.date | date: '%Y-%m-%d' }}">
+         data-date="{{ tech_bite.date | date: '%Y-%m-%d' }}"
+         data-category="{{ tech_bite.category | default: 'tech-bite' }}">
     <div class="card-content">
         <header class="card-header">
-            <h3 class="card-title">
-                <a href="{{ tech_bite.url | relative_url }}" class="card-link">
-                    {{ tech_bite.title }}
-                </a>
-            </h3>
+            <div class="card-title-row">
+                <h3 class="card-title">
+                    <a href="{{ tech_bite.url | relative_url }}" class="card-link">
+                        {{ tech_bite.title }}
+                    </a>
+                </h3>
+                <span class="category-badge category-{{ tech_bite.category | default: 'tech-bite' }}">
+                    {{ tech_bite.category | default: 'tech-bite' | capitalize }}
+                </span>
+            </div>
 
             <div class="card-meta">
                 {% if site.sections.tech_bite.show_dates and tech_bite.date %}

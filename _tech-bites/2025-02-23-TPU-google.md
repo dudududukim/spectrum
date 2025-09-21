@@ -1,6 +1,7 @@
 ---
 title: "Google Ironwood TPU Design"
 date: 2025-09-16
+category: "paper"
 categories: ["Google", "Machine Learning", "TPU Design"]
 tags: ["machine-learning", "google", "ironwood-tpu", "design-automation"]
 description: "How ML transforms Google Ironwood TPU design with optimization, verification, and automation for inference workloads."

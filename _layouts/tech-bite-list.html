@@ -9,6 +9,16 @@ layout: default
             <p class="page-description">{{ site.content.pages.tech_bites.description | default: "Daily tech insights and discoveries" }}</p>
         </header>
 
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="paper">Paper</button>
+                <button class="filter-btn" data-category="tech-bite">Tech Bite</button>
+                <button class="filter-btn" data-category="life">Life</button>
+            </div>
+        </div>
+
         <!-- Tech Bites Grid -->
         <div class="tech-bites-grid">
             {% assign sorted_tech_bites = site.tech-bites | sort: 'date' | reverse %}
@@ -42,11 +52,28 @@ layout: default
 </div>
 
 <script>
-// Simple pagination functionality (no filtering)
+// Category filtering and pagination functionality
 document.addEventListener('DOMContentLoaded', function() {
     const techBites = document.querySelectorAll('.tech-bite-card');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const itemsPerPage = {{ site.sections.tech_bite.pagination | default: 10 }};
     let currentPage = 1;
+    let currentCategory = 'all';
+
+    // Category filtering functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update current category
+            currentCategory = this.getAttribute('data-category');
+            currentPage = 1; // Reset to first page when filtering
+            
+            updateDisplay();
+        });
+    });
 
     // Pagination functionality
     const prevBtn = document.getElementById('prev-page');
@@ -64,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
-            const totalPages = Math.ceil(techBites.length / itemsPerPage);
+            const filteredTechBites = getFilteredTechBites();
+            const totalPages = Math.ceil(filteredTechBites.length / itemsPerPage);
             if (currentPage < totalPages) {
                 currentPage++;
                 updateDisplay();
@@ -72,18 +100,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function getFilteredTechBites() {
+        if (currentCategory === 'all') {
+            return Array.from(techBites);
+        }
+        return Array.from(techBites).filter(card => {
+            return card.getAttribute('data-category') === currentCategory;
+        });
+    }
+
     function updateDisplay() {
-        const totalPages = Math.ceil(techBites.length / itemsPerPage);
+        const filteredTechBites = getFilteredTechBites();
+        const totalPages = Math.ceil(filteredTechBites.length / itemsPerPage);
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
 
-        // Hide all items
+        // Hide all items first
         techBites.forEach(card => {
             card.style.display = 'none';
         });
 
-        // Show items for current page
-        Array.from(techBites).slice(startIndex, endIndex).forEach(card => {
+        // Show filtered items for current page
+        filteredTechBites.slice(startIndex, endIndex).forEach(card => {
             card.style.display = 'block';
         });
 
@@ -96,6 +134,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (currentPageSpan) {
             currentPageSpan.textContent = currentPage;
+        }
+
+        // Update pagination info if it exists
+        const paginationInfo = document.querySelector('.pagination-info');
+        if (paginationInfo) {
+            const showingCount = Math.min(itemsPerPage, filteredTechBites.length - startIndex);
+            paginationInfo.textContent = `Showing ${showingCount} of ${filteredTechBites.length} tech bites`;
         }
     }
 

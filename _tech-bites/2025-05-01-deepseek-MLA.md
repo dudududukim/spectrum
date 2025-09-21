@@ -1,6 +1,7 @@
 ---
 title: "DeepSeek MLA Algorithm Design"
 date: 2025-09-16
+category: "tech-bite"
 categories: ["DeepSeek", "Machine Learning", "Attention Design"]
 tags: ["machine-learning", "deepseek", "mla-algorithm", "design-automation"]
 description: "How ML transforms DeepSeek MLA algorithm design with optimization, verification, and automation for efficient inference."
