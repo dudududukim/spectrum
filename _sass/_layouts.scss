@@ -164,7 +164,7 @@
   }
 
   .tech-bite-content {
-    max-width: var(--content-max-width);
+    width: var(--content-max-width);
     margin: 0 auto 3rem;
     font-size: 1rem;
     line-height: 1.6;
@@ -827,6 +827,7 @@
     }
 
     .tech-bite-content {
+      width: var(--content-max-width);
       padding: 0 1rem;
     }
 
